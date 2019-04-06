@@ -1,5 +1,5 @@
-# Challenge_Bosch
-Challenge Bosch of AR &amp; Machine learning
+# Hackathon
+Challenge Grupo Modelo 8
 
 ## Entregables:
 1. Construir un modelo estadístico que explique el crecimiento económico a nivel entidad federativa en México. Dicho modelo deberá estar construido con datos públicos abiertos y el código, repositorio y metodología deberán ser claramente explicados y entregados para su evaluación. Se deberá demostrar que el modelo tiene una precisión alta comparándola con datos públicos de crecimiento económico por entidad federativa publicados por fuentes oficiales como el Producto Interno Bruto de las Entidades Federativas (PIBE) y el Indicador Trimestral de Actividad Económica Estatal (ITAEE). Se deberá proveer la precisión obtenida contra dichos indicadores (métricas).
