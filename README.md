@@ -37,3 +37,9 @@ Visualizaciones graficas:
 1. https://www.investing.com/webmaster-tools/
 
 2. https://es.tradingview.com/
+
+Predicciones:
+1. https://www.youtube.com/watch?v=SSu00IRRraY
+
+BitMex API:
+https://www.youtube.com/watch?v=X3OYHu1tQkA
