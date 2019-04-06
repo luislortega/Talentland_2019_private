@@ -1,0 +1,8 @@
+﻿"Comentarios del Tabulado."
+"La suma de los parciales puede no coincidir con el total debido al redondeo de las cifras."
+"Leyendas."
+"C1","Los códigos se derivan del SCN 2008, modificados para uso del SCN de México"
+"R","Revisada"
+"P","Preliminar"
+"NA","No Aplica."
+

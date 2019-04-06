@@ -1,15 +1,9 @@
 # Hackathon
 La generación de grandes ciudades en México supone un gran impulsor económico que representa una mejora en el bienestar de las personas, pues al haber una mayor concentración de personas en un mismo lugar se produce un mayor encuentro entre la oferta y la demanda del mercado. De este modo, la aglomeración de personas en un mismo lugar provoca “economías de escalas” provocando que el costo medio por persona de determinados servicios se reduzca en función del aumento de la población.
-
  
-
 Cada vez más gente emigra de sus pueblos natales en busca de alguna gran ciudad donde desarrollarse de manera personal y profesional. Existen ciudades receptoras naturales de población que habita en zonas aledañas a poblaciones pequeñas, que se desplazan al centro urbano más cercano, tal vez por el desgaste de sus condiciones personales.
 
- 
-
 De 2006-2011 62% del PIB de México se generó en 32 ciudades. Sin embargo, México no mide la actividad económica a nivel ciudades de manera constante y oportuna. El INEGI reporta anualmente el Producto Interno Bruto de las Entidades Federativas (PIBE) con 12 meses de rezago y pública la actividad económica trimestral en las entidades a través del Indicador Trimestral de Actividad Económica Estatal (ITAEE).
-
- 
 
 Lo anterior ha llevado a que se hayan hecho esfuerzos para crear nuevas formas de medir la actividad económica de las ciudades usando métodos de ciencia de datos. Instituciones como el Instituto Mexicano para la Competitividad (IMCO) crearon la Medición de la Actividad Económica con Grandes Datos (MAGDA) utilizando imágenes satelitales para medir la luminosidad de ciudades y la información transaccional de la Comisión Nacional Bancaria de Valores (CNVB)
 ## Entregables:
@@ -54,3 +48,20 @@ Predicciones:
 
 BitMex API:
 https://www.youtube.com/watch?v=X3OYHu1tQkA
+
+## Idea
+Nuestra idea para tener un calculo del producto interno bruto es sencillo, para calcular el PIB se tienen en cuenta 4 variables.
+1. Consumo
+
+Información que mide la evolución del gasto realizado por los hogares en bienes y servicios de consumo, tanto de origen nacional como importado, permitiendo con ello dar seguimiento de forma mensual al componente más significativo del producto, por el lado de la demanda.
+
+http://www.beta.inegi.org.mx/temas/imcp/
+
+2. Inversion
+3. Gasto publico
+4. Exportaciones netas
+
+## Datos que se pueden usar
+* el Producto Interno Bruto de las Entidades Federativas (PIBE
+* Indicador Trimestral de Actividad Económica Estatal (ITAEE).
+* información transaccional de la Comisión Nacional Bancaria de Valores (CNVB)
