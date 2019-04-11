@@ -1,4 +1,6 @@
-# imports
+# Modificaciones a futuro
+# - cambiar la precision de los datos proporcionados por la INEGI
+
 import csv
 import json
 import psycopg2
@@ -14,27 +16,24 @@ class DatabaseConnection:
         except:
             print("Error en la conexion")
     def crear_tablas(self):
-        create_table_command = "CREATE TABLE pib_mexico(id serial PRIMARY KEY, ano int, data JSON)"
+        create_table_command = "CREATE TABLE pib_mexico(id serial PRIMARY KEY, ano int, data float)"
         self.cursor.execute(create_table_command)
         print("Tabla creada")
 
     def insertar_dato(self, pib):
 
-        # NECESITA MODIFICACION!!! PARA SUMAR EL PRODUCTO INTERNO BRUTO DE CADA TRIMESTRE
-        pib_ano = []
-        suma = 0
+        suma_pib = 0
         ano_base = 1993
         for x in range(0, 25):
             for i in range(0, 4):
-                pib_ano.append(pib[i][x])
-                suma += float(pib[i][x])
+                suma_pib += float(pib[i][x])
+            
             #agrega la informacion
-            print(suma)
-            suma = 0
-            insert_command = "INSERT INTO pib_mexico(ano, data) VALUES('"+ str(ano_base) + "', '"+ json.dumps(pib_ano) +"')"
+            insert_command = "INSERT INTO pib_mexico(ano, data) VALUES('"+ str(ano_base) + "', '"+ str(suma_pib) +"')"
             self.cursor.execute(insert_command)
+
             ano_base += 1 # Siguiente año
-            pib_ano = [] # Limpieza del vector                
+            suma_pib = 0 # Reseteo de la suma
 # MAIN 
 if __name__ == '__main__':
 
