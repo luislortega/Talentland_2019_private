@@ -2,11 +2,13 @@
 # - cambiar la precision de los datos proporcionados por la INEGI
 
 import csv
-import json
 import psycopg2
+#Graphs
 import numpy as np
 from sklearn.svm import SVR
 import matplotlib.pyplot as plt
+#Tables
+import pandas as pd
 
 # DATABASE CONNECTION
 class DatabaseConnection:
@@ -58,42 +60,32 @@ if __name__ == '__main__':
 			    pib.append(row)
 	    return
 
-    # REPARA ESTOOOO
     def predict_price(dates, prices, x):
-	    dates = np.reshape(dates,(len(dates), 1)) # convertir en una matriz de n x 1
-	    svr_lin = SVR(kernel= 'linear')
+	    dates = np.reshape(dates,(len(dates), 1)) # converting to matrix of n X 1
 	    svr_poly = SVR(kernel= 'poly', degree= 2)
-	    svr_rbf = SVR(kernel= 'rbf',  gamma= 0.1) 
-	    svr_rbf.fit(dates, prices)
-	    svr_lin.fit(dates, prices)
 	    svr_poly.fit(dates, prices)
-
-	    plt.scatter(dates, prices, color= 'black', label= 'Data') # plotting the initial datapoints 
-	    plt.plot(dates, svr_rbf.predict(dates), color= 'red', label= 'RBF model') # plotting the line made by the RBF kernel
-	    plt.plot(dates,svr_lin.predict(dates), color= 'green', label= 'Modelo lineal') # plotting the line made by linear kernel
+	    plt.scatter(dates, prices, color= 'black', label= 'Datos') # plotting the initial datapoints 
 	    plt.plot(dates,svr_poly.predict(dates), color= 'blue', label= 'Modelo polinomial') # plotting the line made by polynomial kernel
-	    plt.xlabel('Date')
-	    plt.ylabel('Price')
-	    plt.title('Support Vector Regression')
+	    plt.xlabel('Años')
+	    plt.ylabel('Millones de pesos')
+	    plt.title('Producto interno bruto en mexico')
 	    plt.legend()
 	    plt.show()
-
-	    return svr_rbf.predict(x)[0], svr_lin.predict(x)[0], svr_poly.predict(x)[0]
+	    #return svr_poly.predict(x)[0]
 
     #Leer PIB de todos los años en todo mexico    
     leer_pib_total('inegi_data/pib_mexico/data.csv') 
     conexion_bd = DatabaseConnection()
-    #conexion_bd.crear_tablas()
+    conexion_bd.crear_tablas()
     array_pib = conexion_bd.insertar_dato(pib)
 
     predict_price(array_anos, array_pib, 25)
 
-    #Mostrar graficos
-    plt.plot(array_anos, array_pib)
-    plt.scatter(array_anos, array_pib, color= 'black', label= 'Data') # plotting the initial datapoints 
-    #Texto
-    plt.ylabel("Millones de pesos")
-    plt.xlabel("Años")
-    plt.title("Producto interno bruto de Mexico")
-    plt.show()
+    ## pandas
+    datos = { 'Nombre': ["chalo", "luis", "eyder"], 
+                'Calificaciones': ["4", "9", "10"], 
+                'Deportes': ["futbol", "beisbol", "americano"],
+                'Materias': ["Calculo", "Discretas", "Software"]}
 
+    df = pd.DataFrame(datos)
+    print(df)
