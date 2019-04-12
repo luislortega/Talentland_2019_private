@@ -15,7 +15,6 @@ Crecimiento poblacional:
 
 Crecimiento economico:
 
-
 '''
 import csv
 import psycopg2
