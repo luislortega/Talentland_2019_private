@@ -51,21 +51,20 @@ if __name__ == '__main__':
         ano_base += 1
 
     def leer_pib_total(filename):
-	    with open(filename, 'r') as csvfile: ## problem
+	    with open(filename, 'r') as csvfile:
 		    csvFileReader = csv.reader(csvfile)
 		    next(csvFileReader) 
 		    for row in csvFileReader:
 			    pib.append(row)
 	    return
 
+    # REPARA ESTOOOO
     def predict_price(dates, prices, x):
-	    dates = np.reshape(dates,(len(dates), 1)) # converting to matrix of n X 1
-
-        
-	    svr_lin = SVR(kernel= 'linear', C= 1e3)
-	    svr_poly = SVR(kernel= 'poly', C= 1e3, degree= 2)
-	    svr_rbf = SVR(kernel= 'rbf', C= 1e3, gamma= 0.1) # defining the support vector regression models
-	    svr_rbf.fit(dates, prices) # fitting the data points in the models
+	    dates = np.reshape(dates,(len(dates), 1)) # convertir en una matriz de n x 1
+	    svr_lin = SVR(kernel= 'linear')
+	    svr_poly = SVR(kernel= 'poly', degree= 2)
+	    svr_rbf = SVR(kernel= 'rbf',  gamma= 0.1) 
+	    svr_rbf.fit(dates, prices)
 	    svr_lin.fit(dates, prices)
 	    svr_poly.fit(dates, prices)
 
@@ -86,12 +85,15 @@ if __name__ == '__main__':
     conexion_bd = DatabaseConnection()
     #conexion_bd.crear_tablas()
     array_pib = conexion_bd.insertar_dato(pib)
-    #show graph
+
+    predict_price(array_anos, array_pib, 25)
+
+    #Mostrar graficos
     plt.plot(array_anos, array_pib)
     plt.scatter(array_anos, array_pib, color= 'black', label= 'Data') # plotting the initial datapoints 
-
-    #Text
+    #Texto
     plt.ylabel("Millones de pesos")
     plt.xlabel("Años")
     plt.title("Producto interno bruto de Mexico")
     plt.show()
+
