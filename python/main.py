@@ -4,6 +4,9 @@
 import csv
 import json
 import psycopg2
+import numpy as np
+from sklearn.svm import SVR
+import matplotlib.pyplot as plt
 
 # DATABASE CONNECTION
 class DatabaseConnection:
@@ -21,7 +24,7 @@ class DatabaseConnection:
         print("Tabla creada")
 
     def insertar_dato(self, pib):
-
+        array_pib = []
         suma_pib = 0
         ano_base = 1993
         for x in range(0, 25):
@@ -31,17 +34,21 @@ class DatabaseConnection:
             insert_command = "INSERT INTO pib_mexico(ano, data) VALUES('"+ str(ano_base) + "', '"+ str(suma_pib) +"')"
             self.cursor.execute(insert_command)
             ano_base += 1 # Siguiente año
+            array_pib.append(int(suma_pib))
             suma_pib = 0 # Reseteo de la suma
+        return array_pib
 # MAIN 
 if __name__ == '__main__':
 
     pib = []
+    array_pib = []
     ## Fechas
     ano_base = 1993
     array_anos = []
-        for x in range(0, 25):
-            array_anos.append(ano_base)
-            ano_base += 1
+
+    for x in range(0, 25):
+        array_anos.append(ano_base)
+        ano_base += 1
 
     def leer_pib_total(filename):
 	    with open(filename, 'r') as csvfile: ## problem
@@ -54,6 +61,7 @@ if __name__ == '__main__':
     def predict_price(dates, prices, x):
 	    dates = np.reshape(dates,(len(dates), 1)) # converting to matrix of n X 1
 
+        
 	    svr_lin = SVR(kernel= 'linear', C= 1e3)
 	    svr_poly = SVR(kernel= 'poly', C= 1e3, degree= 2)
 	    svr_rbf = SVR(kernel= 'rbf', C= 1e3, gamma= 0.1) # defining the support vector regression models
@@ -63,8 +71,8 @@ if __name__ == '__main__':
 
 	    plt.scatter(dates, prices, color= 'black', label= 'Data') # plotting the initial datapoints 
 	    plt.plot(dates, svr_rbf.predict(dates), color= 'red', label= 'RBF model') # plotting the line made by the RBF kernel
-	    plt.plot(dates,svr_lin.predict(dates), color= 'green', label= 'Linear model') # plotting the line made by linear kernel
-	    plt.plot(dates,svr_poly.predict(dates), color= 'blue', label= 'Polynomial model') # plotting the line made by polynomial kernel
+	    plt.plot(dates,svr_lin.predict(dates), color= 'green', label= 'Modelo lineal') # plotting the line made by linear kernel
+	    plt.plot(dates,svr_poly.predict(dates), color= 'blue', label= 'Modelo polinomial') # plotting the line made by polynomial kernel
 	    plt.xlabel('Date')
 	    plt.ylabel('Price')
 	    plt.title('Support Vector Regression')
@@ -72,12 +80,18 @@ if __name__ == '__main__':
 	    plt.show()
 
 	    return svr_rbf.predict(x)[0], svr_lin.predict(x)[0], svr_poly.predict(x)[0]
-        
+
     #Leer PIB de todos los años en todo mexico    
     leer_pib_total('inegi_data/pib_mexico/data.csv') 
     conexion_bd = DatabaseConnection()
     #conexion_bd.crear_tablas()
-    conexion_bd.insertar_dato(pib)
+    array_pib = conexion_bd.insertar_dato(pib)
+    #show graph
+    plt.plot(array_anos, array_pib)
+    plt.scatter(array_anos, array_pib, color= 'black', label= 'Data') # plotting the initial datapoints 
 
-    ##AGREGAR REGRESION LINEAR 
-    #predict_price
+    #Text
+    plt.ylabel("Millones de pesos")
+    plt.xlabel("Años")
+    plt.title("Producto interno bruto de Mexico")
+    plt.show()
