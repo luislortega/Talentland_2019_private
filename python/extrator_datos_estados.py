@@ -1,7 +1,7 @@
 ## fecha desde 2003 hasta el 2017
 import csv
 import psycopg2
-
+import json
 
 # DATABASE CONNECTION
 class DatabaseConnection:
@@ -19,20 +19,13 @@ class DatabaseConnection:
         self.cursor.execute(create_table_command)
         print("Tabla creada")
 
-    def insertar_dato(self, pib):
-        array_pib = []
-        suma_pib = 0
-        ano_base = 1993
-        for x in range(0, 25):
-            for i in range(0, 4):
-                suma_pib += float(pib[i][x])
-            #agrega la informacion
-            insert_command = "INSERT INTO pib_mexico(ano, data) VALUES('"+ str(ano_base) + "', '"+ str(suma_pib) +"')"
-            self.cursor.execute(insert_command)
-            ano_base += 1 # Siguiente año
-            array_pib.append(int(suma_pib))
-            suma_pib = 0 # Reseteo de la suma
-        return array_pib
+    def insertar_dato(self, nombre, jsonData):
+        #agrega la informacion
+        print(nombre, jsonData)
+        insert_command = "INSERT INTO pib_entidad_federativa(nombre_entidad, actividades_economicas) VALUES('"+nombre+"', '"+jsonData+"')"
+
+        self.cursor.execute(insert_command)
+        print("datos intertados")
 # MAIN 
 if __name__ == '__main__':
     data = []
@@ -49,9 +42,11 @@ if __name__ == '__main__':
     leer_datos('inegi_data/pib_estados/yucatan/pibe_entidad_yuc.csv')
     #Database
     conexion_bd = DatabaseConnection()
-
-    conexion_bd.crear_tablas()
+    #conexion_bd.crear_tablas()
 
     for i, item in enumerate(data):
-        print(i)
-        print(item)
+        #print(item.split(","))
+        data_separado.append(item.split(","))
+
+    conexion_bd.insertar_dato("Yucatan", json.dumps(data_separado))
+    
