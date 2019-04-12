@@ -2,7 +2,6 @@ import csv
 import psycopg2
 
 class DatabaseConnection:
-
     def __init__(self):
         try:
             self.connection = psycopg2.connect("dbname='grupomodelo' user='postgres' host='localhost' password='1298Luis'")
@@ -26,6 +25,16 @@ class DatabaseConnection:
 
     def insertar_pib_entidades_federativas_minado_INEGI(self):
         print("Do something")
+
+class CsvScannerINEGI:
+
+    def leer_datos(filename):
+        with open(filename, 'r') as csvfile:
+            csvFileReader = csv.reader(csvfile)
+            next(csvFileReader)
+            for i, row in enumerate(csvfile):
+                print(row)
+        return
 
 if __name__ == "__main__":
     print("Do something")
