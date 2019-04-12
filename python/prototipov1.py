@@ -1,3 +1,22 @@
+'''
+Condiciones:
+PROTOTIPO FUNCIONAL ENTRE 2010 - ACTUALIDAD
+
+Tipos de crecimiento y como obtenerlo.
+
+Crecimiento poblacional:
+    1. Extraer la poblacion total por entidad federativa
+    2. Extraer la natalidad total por entidad federativa
+    3. Extraer la mortalidad total por entidad federativa
+    4. Calcular la natalidad 2010 hasta la actualidad (Angie)
+    5. Calcular la mortalidad 2010 hasta el actualidad (Angie)
+    6. Con los datos de mortalidad y natalidad calcular la poblacion total hasta 2018
+    7. Sacar la prediccion de la poblacion 2019
+
+Crecimiento economico:
+
+
+'''
 import csv
 import psycopg2
 
@@ -28,7 +47,7 @@ class DatabaseConnection:
 
 class CsvScannerINEGI:
 
-    def leer_datos(filename):
+    def leer_datos(self, filename):
         with open(filename, 'r') as csvfile:
             csvFileReader = csv.reader(csvfile)
             next(csvFileReader)
@@ -37,4 +56,6 @@ class CsvScannerINEGI:
         return
 
 if __name__ == "__main__":
+    sc = CsvScannerINEGI()
+    sc.leer_datos('inegi_data/pob_entidades/poblacion_inegi.csv')
     print("Do something")
