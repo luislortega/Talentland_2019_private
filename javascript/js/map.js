@@ -1,4 +1,5 @@
 let map;
+let infowindow;
 
 function initMap() {
     let datos = [
@@ -16,6 +17,7 @@ function initMap() {
         }
     ]
     cargarMapa();
+    /* envia los JSON de la informacion */
     cargarMarcador(datos);
 }
 
@@ -29,7 +31,7 @@ function cargarMarcador(datos) {
         });
         
         google.maps.event.addListener(marker, 'click', (e) => {
-            var infowindow = new google.maps.InfoWindow({
+            infowindow = new google.maps.InfoWindow({
                 content:marker.titulo
             });
             infowindow.open(map,marker);
@@ -41,6 +43,9 @@ function cargarMapa() {
     let posicion = new google.maps.LatLng(20.975507, -89.622176);
     map = new google.maps.Map(document.getElementById('map'), {
         streetViewControl: true,
+        streetViewControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+        },
         disableDefaultUI: true,
         center: posicion,
         zoom: 15,
