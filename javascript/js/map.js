@@ -1,29 +1,41 @@
 let map;
 
 function initMap() {
-    let data = [
+    let datos = [
         {
             "title": "Marcador 1",
             "lat": 20.975507,
             "long": -89.622176,
             "description": "Es una prueba de marcador"
+        },
+        {
+            "title": "Marcador 2",
+            "lat": 20.975600,
+            "long": -89.622200,
+            "description": "Es una prueba de marcador"
         }
     ]
     cargarMapa();
-    cargarMarcador(new google.maps.LatLng(20.975507, -89.622176));
+    cargarMarcador(datos);
 }
 
- function cargarMarcador(location) {
-
-     var marker = new google.maps.Marker({
-         position: location, 
-         map: map
-     });
-
-     google.maps.event.addListener(marker, 'click', function(event) {
-        console.log("Shit nigga :)")
-     });
- }
+function cargarMarcador(datos) {
+    datos.forEach(elemento => {
+        let location = new google.maps.LatLng(elemento.lat, elemento.long)
+        let marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            titulo: elemento.title
+        });
+        
+        google.maps.event.addListener(marker, 'click', (e) => {
+            var infowindow = new google.maps.InfoWindow({
+                content:marker.titulo
+            });
+            infowindow.open(map,marker);
+        });
+    });
+}
 
 function cargarMapa() {
     let posicion = new google.maps.LatLng(20.975507, -89.622176);
