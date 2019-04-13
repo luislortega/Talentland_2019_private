@@ -68,14 +68,14 @@ class CsvScannerINEGI:
                     datos_entidad.pop(1)
                     datos_entidad[0] = datos_entidad[0].replace('"',"")
                     datos_entidad[1] = datos_entidad[1].replace('"',"")
-                    datos_entidad[1] = datos_entidad[1].replace('\n',"")
+                    datos_entidad[1] = datos_entidad[1].replace("\n","")
                     datos.append(datos_entidad)
         return datos
     
     # Extrae los datos minados de inegi sobre la natalidad 2011 - 2017
     def leer_natalidad_2011_2017(self, filename):
-        print("[DEV] Lectura de la natalidad 2010 hasta 2017")
         natalidad_2011_2017 = []
+        natalidad_ordenada = []
 
         with open(filename, 'r') as csvfile:
             csvFileReader = csv.reader(csvfile)
@@ -85,12 +85,20 @@ class CsvScannerINEGI:
                     natalidad_2011_2017.append(row.split(";"))
 
         natalidad_2011_2017 = natalidad_2011_2017[0:len(natalidad_2011_2017)-1]
-        
-        for i, elemento in enumerate(natalidad_2011_2017):
-            for j, datos in enumerate(elemento):
-                print(i,datos)                      
-        return
 
+        for i, elemento in enumerate(natalidad_2011_2017):
+            ultimo_elemento = natalidad_2011_2017[i][8].replace("\n","")
+            natalidad_ordenada.append({"2011": natalidad_2011_2017[i][2], "2012": natalidad_2011_2017[i][3], "2013": natalidad_2011_2017[i][4], "2014": natalidad_2011_2017[i][5], "2015": natalidad_2011_2017[i][6], "2016":natalidad_2011_2017[i][7], "2017": ultimo_elemento})
+        return natalidad_ordenada
+
+    # Extrae los datos minados de inegi sobre la mortalidad 2011 - 2017
+    def leer_natalidad_2011_2017(self, filename):
+        with open(filename, 'r') as csvfile:
+            csvFileReader = csv.reader(csvfile)
+            for i, row in enumerate(csvfile):
+                print(row)
+        return 
+        
 class ControladorDatos:
     # Guardamos la entidades y poblaciones del 2010
     def controlador_poblacion_2010(self, database, datos):
@@ -102,16 +110,17 @@ class ControladorDatos:
             poblacion.append({'2010':elemento[1]})
 
         database.insertar_entidades_poblacion_2010(entidades_federativas, poblacion)
-
+    
 if __name__ == "__main__":
+    #Contenedores de informacion
     poblacion_2010 = []
     natalidad_2011_2017 = []
     mortalidad_2011_2017 = []
-
+    #Utilidades
     scanner = CsvScannerINEGI()
     database = ConexionDB()
     controlador = ControladorDatos()
-
+    #Base de datos
     database.limpiar_tablas_postgres()
     database.crear_tablas_postgres()
 
@@ -120,13 +129,24 @@ if __name__ == "__main__":
         Datos: @inegi
     '''
     poblacion_2010 = scanner.leer_poblacion_2010('inegi_data/pob_entidades/Poblacion_01.csv')
-    controlador.controlador_poblacion_2010(database, poblacion_2010)
     '''
         Natalidad 2011 - 2017
         Datos: @inegi
     '''
     natalidad_2011_2017 = scanner.leer_natalidad_2011_2017('inegi_data/pob_entidades/Natalidad_01.csv')
+    
     '''
         Moratlidad 2011 - 2017
         Datos: @inegi
     '''
+    mortalidad_2011_2017
+
+    #controladores
+    controlador.controlador_poblacion_2010(database, poblacion_2010)
+
+
+#print(natalidad_2011_2017)
+    #test = {"t":1}
+        #z = {**test, **natalidad_ordenada[0]}
+        #test = {**test + **natalidad_ordenada}
+        #print(natalidad_ordenada)
