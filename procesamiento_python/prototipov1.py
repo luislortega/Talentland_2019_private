@@ -1,6 +1,10 @@
 '''
+@author: Luis Gerardo Leon Ortega
+
+Este prototipo en Python filtra y procesa los datos para poder ser exportado a otras plataformas.
+
 Condiciones:
-PROTOTIPO FUNCIONAL ENTRE 2010 - ACTUALIDAD
+2010 - Actualidad
 
 Tipos de crecimiento y como obtenerlo.
 
@@ -14,11 +18,11 @@ Crecimiento poblacional:
     7. Sacar la prediccion de la poblacion 2019
 
 Crecimiento economico:
-    
-
+    En proceso...
 '''
 import csv
 import psycopg2
+import json
 
 class ConexionDB:
     def __init__(self):
@@ -26,7 +30,7 @@ class ConexionDB:
             self.connection = psycopg2.connect("dbname='grupomodelo' user='postgres' host='localhost' password='1298Luis'")
             self.connection.autocommit = True
             self.cursor = self.connection.cursor()
-            print("Backend running at port 8080 👽")
+            print("[✔] Base de datos conectada")
         except:
             print("Error en la conexion")
 
@@ -35,48 +39,62 @@ class ConexionDB:
         self.cursor.execute(create_table_command)
         create_table_command = "CREATE TABLE pib_mexico(id serial PRIMARY KEY, ano int, data float)"
         self.cursor.execute(create_table_command)
+        print("[✔] Tablas creadas")
 
     def limpiar_tablas_postgres(self):
         drop_table_command = "DROP TABLE entidad_federativa"
         self.cursor.execute(drop_table_command)
         drop_table_command = "DROP TABLE pib_mexico"
         self.cursor.execute(drop_table_command)
+        print("[✔] Limpieza en las tablas")
 
-    def insertar_poblacion_entidades_2010(self):
-        print("Do something")
-        
-    def insertar_pib_minado_INEGI(self):
-        print("Do something")
-
-    def insertar_pib_entidades_federativas_minado_INEGI(self):
-        print("Do something")
+    def insertar_entidades_poblacion_2010(self, entidades, poblacion):
+        print(entidades)
+        print(poblacion)
 
 class CsvScannerINEGI:
+    # Extrae los datos minados de inegi 2010
     def leer_poblacion_2010(self, filename):
         datos = []
         with open(filename, 'r') as csvfile:
             csvFileReader = csv.reader(csvfile)
             for i, row in enumerate(csvfile):
-                datos.append(row)
+                if i >= 4:
+                    datos_entidad = row.split(";")
+                    datos_entidad.pop(1)
+                    datos_entidad[0] = datos_entidad[0].replace('"',"")
+                    datos_entidad[1] = datos_entidad[1].replace('"',"")
+                    datos_entidad[1] = datos_entidad[1].replace('\n',"")
+                    datos.append(datos_entidad)
         return datos
 
-if __name__ == "__main__":
-    dev = True #Para crear las tablas.
+class ControladorDatos:
+    # Guardamos la entidades y poblaciones del 2010
+    def controlador_poblacion_2010(self, database, datos):
+        entidades_federativas = []
+        poblacion = []
 
+        for elemento in datos:
+            entidades_federativas.append(elemento[0])
+            poblacion.append(elemento[1])
+
+        database.insertar_entidades_poblacion_2010(entidades_federativas, poblacion)
+
+if __name__ == "__main__":
     poblacion_2010 = []
 
-    sc = CsvScannerINEGI()
-    db = ConexionDB()
+    scanner = CsvScannerINEGI()
+    database = ConexionDB()
+    controlador = ControladorDatos()
 
-    db.limpiar_tablas_postgres()
-    db.crear_tablas_postgres()
+    database.limpiar_tablas_postgres()
+    database.crear_tablas_postgres()
 
     '''
         Poblacion 2010.
         Datos: @inegi
     '''
-    poblacion_2010 = sc.leer_poblacion_2010('inegi_data/pob_entidades/Poblacion_01.csv')
-    poblacion_2010 = poblacion_2010[4:]
+    poblacion_2010 = scanner.leer_poblacion_2010('inegi_data/pob_entidades/Poblacion_01.csv')
+    controlador.controlador_poblacion_2010(database, poblacion_2010)
 
-
-    print(poblacion_2010)
+    #print(poblacion_2010)
