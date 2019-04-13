@@ -14,6 +14,7 @@ Crecimiento poblacional:
     7. Sacar la prediccion de la poblacion 2019
 
 Crecimiento economico:
+    
 
 '''
 import csv
@@ -31,7 +32,7 @@ class DatabaseConnection:
 
     def crear_tablas_postgres(self):
         #Entidades federativas
-        create_table_command = "CREATE TABLE pib_entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), actividades_economicas JSON)"
+        create_table_command = "CREATE TABLE entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), actividades_economicas JSON, poblacion JSON, natalidad JSON, mortalidad JSON)"
         self.cursor.execute(create_table_command)
         #Pib total en México
         create_table_command = "CREATE TABLE pib_mexico(id serial PRIMARY KEY, ano int, data float)"
