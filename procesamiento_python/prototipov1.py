@@ -1,13 +1,14 @@
 '''
 @author: Monkey Coders
 
-Este prototipo en Python filtra y procesa los datos para poder ser exportado a otras plataformas.
+Este prototipo en Python con estandar MVC, filtra y procesa los datos para poder ser exportado a otras plataformas.
 
 Condiciones:
 2010 - Actualidad
 
-Informacion obtenida desde la base de datos de INEGI.
-    url: https://www.inegi.org.mx/
+Mineria de datos.
+    poblacion, natalidad, mortalidad: https://www.inegi.org.mx/
+    conapo: https://datos.gob.mx/busca/dataset/proyecciones-de-la-poblacion-de-mexico-y-de-las-entidades-federativas-2016-2050/resource/a31f9dbb-4f65-47da-ba44-50eb44a9ad25
 
 Crecimiento poblacional:
     1. Extraer la poblacion total por entidad federativa
@@ -33,7 +34,7 @@ class ConexionDB:
             self.cursor = self.connection.cursor()
             print("[✔] Base de datos conectada")
         except:
-            print("Error en la conexion")
+            print("[x] Error en la conexion")
 
     def crear_tablas_postgres(self):
         create_table_command = "CREATE TABLE entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), lat varchar, long varchar, actividades_economicas JSON, poblacion JSON, natalidad JSON, mortalidad JSON)"
@@ -55,13 +56,14 @@ class ConexionDB:
             self.cursor.execute(insert_command)
         print("[✔] Indetidades federativas insertadas con su poblacion en 2010")
     
-        
 class CsvScannerINEGI:
     # Extrae los datos minados de inegi sobre la poblacion 2010
     def leer_poblacion_2010(self, filename):
         datos = []
+        
         with open(filename, 'r') as csvfile:
             csvFileReader = csv.reader(csvfile)
+        
             for i, row in enumerate(csvfile):
                 if i >= 4:
                     datos_entidad = row.split(";")
@@ -70,6 +72,8 @@ class CsvScannerINEGI:
                     datos_entidad[1] = datos_entidad[1].replace('"',"")
                     datos_entidad[1] = datos_entidad[1].replace("\n","")
                     datos.append(datos_entidad)
+        
+        print("[✔] Poblacion del 2010 minada. Fuente: INEGI")
         return datos
     
     # Extrae los datos minados de inegi sobre la natalidad 2011 - 2017
@@ -79,26 +83,35 @@ class CsvScannerINEGI:
 
         with open(filename, 'r') as csvfile:
             csvFileReader = csv.reader(csvfile)
-
             for i, row in enumerate(csvfile):
                 if i >= 4:
                     natalidad_2011_2017.append(row.split(";"))
 
-        natalidad_2011_2017 = natalidad_2011_2017[0:len(natalidad_2011_2017)-1]
-
         for i, elemento in enumerate(natalidad_2011_2017):
             ultimo_elemento = natalidad_2011_2017[i][8].replace("\n","")
             natalidad_ordenada.append({"2011": natalidad_2011_2017[i][2], "2012": natalidad_2011_2017[i][3], "2013": natalidad_2011_2017[i][4], "2014": natalidad_2011_2017[i][5], "2015": natalidad_2011_2017[i][6], "2016":natalidad_2011_2017[i][7], "2017": ultimo_elemento})
+        
+        print("[✔] Natalidad del 2011 - 2017 minada. Fuente: INEGI")
         return natalidad_ordenada
 
     # Extrae los datos minados de inegi sobre la mortalidad 2011 - 2017
-    def leer_natalidad_2011_2017(self, filename):
+    def leer_mortalidad_2011_2017(self, filename):
+        mortalidad_2011_2017 = []
+        mortalidad_ordenada = []
+        
         with open(filename, 'r') as csvfile:
             csvFileReader = csv.reader(csvfile)
             for i, row in enumerate(csvfile):
-                print(row)
-        return 
+                if i >= 4:
+                    mortalidad_2011_2017.append(row.split(";"))
         
+        for i, elemento in enumerate(mortalidad_2011_2017):
+            ultimo_elemento = mortalidad_2011_2017[i][8].replace("\n","")
+            mortalidad_ordenada.append({"2011": mortalidad_2011_2017[i][2], "2012": mortalidad_2011_2017[i][3], "2013": mortalidad_2011_2017[i][4], "2014": mortalidad_2011_2017[i][5], "2015": mortalidad_2011_2017[i][6], "2016":mortalidad_2011_2017[i][7], "2017": ultimo_elemento})
+        
+        print("[✔] Mortalidad del 2011 - 2017 minada. Fuente: INEGI")
+        return mortalidad_ordenada
+
 class ControladorDatos:
     # Guardamos la entidades y poblaciones del 2010
     def controlador_poblacion_2010(self, database, datos):
@@ -110,16 +123,39 @@ class ControladorDatos:
             poblacion.append({'2010':elemento[1]})
 
         database.insertar_entidades_poblacion_2010(entidades_federativas, poblacion)
+    # Obteno los resultados calculado desde el 2010 hasta el 2017 poblacion_2011 = poblacion_2010 + natalidad_2011 - mortalidad_2011 
+    def controlador_poblacion_2010_2017(self, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017):
+        for i, entidad_federativa in enumerate(poblacion_2010):
+            poblacion_entidad_federativa = int(entidad_federativa[1])
+            if(i == 0):
+                ##PROBLEMS HERE
+                for natalidad, mortalidad in zip(natalidad_2011_2017, mortalidad_2011_2017):
+                    for contador_ano in range(2011, 2018):
+                        poblacion_entidad_federativa = int(poblacion_entidad_federativa) + int(natalidad[str(contador_ano)]) - int(mortalidad[str(contador_ano)])
+                        print("Entidad: " +str(i)+"Poblacion de: "+str(contador_ano) +" es de:"+ str(poblacion_entidad_federativa))
+            
+            '''
+            salidas: 
+            AGUASCALIENTES:
+                2010: 1184996
+                2011: 1184996 + 27427 - 4934
+                2012: (1184996 + 27427 - 4934) + 26933 - 5267
+            '''
+        print("[DEV] Calculando la poblacion 2010 - 2017 con la recopilacion de datos")
+        
     
 if __name__ == "__main__":
     #Contenedores de informacion
+    poblacion_2010_2017 = []
     poblacion_2010 = []
     natalidad_2011_2017 = []
     mortalidad_2011_2017 = []
+    
     #Utilidades
     scanner = CsvScannerINEGI()
     database = ConexionDB()
     controlador = ControladorDatos()
+
     #Base de datos
     database.limpiar_tablas_postgres()
     database.crear_tablas_postgres()
@@ -130,16 +166,18 @@ if __name__ == "__main__":
     '''
     poblacion_2010 = scanner.leer_poblacion_2010('inegi_data/pob_entidades/Poblacion_01.csv')
     '''
-        Natalidad 2011 - 2017
+        Natalidad 2011 - 2017.
         Datos: @inegi
     '''
     natalidad_2011_2017 = scanner.leer_natalidad_2011_2017('inegi_data/pob_entidades/Natalidad_01.csv')
-    
     '''
-        Moratlidad 2011 - 2017
+        Moratlidad 2011 - 2017.
         Datos: @inegi
     '''
-    mortalidad_2011_2017
+    mortalidad_2011_2017 = scanner.leer_mortalidad_2011_2017('inegi_data/pob_entidades/Mortalidad_01.csv')
+
+    #Logica
+    poblacion_2010_2017 = controlador.controlador_poblacion_2010_2017(poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017)
 
     #controladores
     controlador.controlador_poblacion_2010(database, poblacion_2010)
