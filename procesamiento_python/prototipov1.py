@@ -14,7 +14,7 @@ Crecimiento poblacional:
     3. Extraer la mortalidad total por entidad federativa
     4. Calcular la natalidad 2010 hasta la actualidad (Angie)
     5. Calcular la mortalidad 2010 hasta el actualidad (Angie)
-    6. Con los datos de mortalidad y natalidad calcular la poblacion total hasta 2018
+    6. Con los datos de mortalidad y natalidad calcular la poblacion total hasta 2018   
     7. Sacar la prediccion de la poblacion 2019
 
 Crecimiento economico:
@@ -35,7 +35,7 @@ class ConexionDB:
             print("Error en la conexion")
 
     def crear_tablas_postgres(self):
-        create_table_command = "CREATE TABLE entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), actividades_economicas JSON, poblacion JSON, natalidad JSON, mortalidad JSON)"
+        create_table_command = "CREATE TABLE entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), lat varchar, long varchar, actividades_economicas JSON, poblacion JSON, natalidad JSON, mortalidad JSON)"
         self.cursor.execute(create_table_command)
         create_table_command = "CREATE TABLE pib_mexico(id serial PRIMARY KEY, ano int, data float)"
         self.cursor.execute(create_table_command)
@@ -49,9 +49,11 @@ class ConexionDB:
         print("[✔] Limpieza en las tablas")
 
     def insertar_entidades_poblacion_2010(self, entidades, poblacion):
-        print(entidades)
-        print(poblacion)
-
+        for i, elemento in enumerate(entidades):
+            insert_command = "INSERT INTO entidad_federativa(nombre_entidad, poblacion) VALUES('"+elemento+"', '"+json.dumps(poblacion[i])+"')"
+            self.cursor.execute(insert_command)
+    
+        
 class CsvScannerINEGI:
     # Extrae los datos minados de inegi 2010
     def leer_poblacion_2010(self, filename):
@@ -76,7 +78,7 @@ class ControladorDatos:
 
         for elemento in datos:
             entidades_federativas.append(elemento[0])
-            poblacion.append(elemento[1])
+            poblacion.append({'2010':elemento[1]})
 
         database.insertar_entidades_poblacion_2010(entidades_federativas, poblacion)
 
@@ -96,5 +98,4 @@ if __name__ == "__main__":
     '''
     poblacion_2010 = scanner.leer_poblacion_2010('inegi_data/pob_entidades/Poblacion_01.csv')
     controlador.controlador_poblacion_2010(database, poblacion_2010)
-
     #print(poblacion_2010)
