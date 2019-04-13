@@ -1,12 +1,13 @@
 '''
-@author: Luis Gerardo Leon Ortega
+@author: Monkey Coders
 
 Este prototipo en Python filtra y procesa los datos para poder ser exportado a otras plataformas.
 
 Condiciones:
 2010 - Actualidad
 
-Tipos de crecimiento y como obtenerlo.
+Informacion obtenida desde la base de datos de INEGI.
+    url: https://www.inegi.org.mx/
 
 Crecimiento poblacional:
     1. Extraer la poblacion total por entidad federativa
@@ -52,10 +53,11 @@ class ConexionDB:
         for i, elemento in enumerate(entidades):
             insert_command = "INSERT INTO entidad_federativa(nombre_entidad, poblacion) VALUES('"+elemento+"', '"+json.dumps(poblacion[i])+"')"
             self.cursor.execute(insert_command)
+        print("[✔] Indetidades federativas insertadas con su poblacion en 2010")
     
         
 class CsvScannerINEGI:
-    # Extrae los datos minados de inegi 2010
+    # Extrae los datos minados de inegi sobre la poblacion 2010
     def leer_poblacion_2010(self, filename):
         datos = []
         with open(filename, 'r') as csvfile:
@@ -69,6 +71,25 @@ class CsvScannerINEGI:
                     datos_entidad[1] = datos_entidad[1].replace('\n',"")
                     datos.append(datos_entidad)
         return datos
+    
+    # Extrae los datos minados de inegi sobre la natalidad 2011 - 2017
+    def leer_natalidad_2011_2017(self, filename):
+        print("[DEV] Lectura de la natalidad 2010 hasta 2017")
+        natalidad_2011_2017 = []
+
+        with open(filename, 'r') as csvfile:
+            csvFileReader = csv.reader(csvfile)
+
+            for i, row in enumerate(csvfile):
+                if i >= 4:
+                    natalidad_2011_2017.append(row.split(";"))
+
+        natalidad_2011_2017 = natalidad_2011_2017[0:len(natalidad_2011_2017)-1]
+        
+        for i, elemento in enumerate(natalidad_2011_2017):
+            for j, datos in enumerate(elemento):
+                print(i,datos)                      
+        return
 
 class ControladorDatos:
     # Guardamos la entidades y poblaciones del 2010
@@ -84,6 +105,8 @@ class ControladorDatos:
 
 if __name__ == "__main__":
     poblacion_2010 = []
+    natalidad_2011_2017 = []
+    mortalidad_2011_2017 = []
 
     scanner = CsvScannerINEGI()
     database = ConexionDB()
@@ -98,4 +121,12 @@ if __name__ == "__main__":
     '''
     poblacion_2010 = scanner.leer_poblacion_2010('inegi_data/pob_entidades/Poblacion_01.csv')
     controlador.controlador_poblacion_2010(database, poblacion_2010)
-    #print(poblacion_2010)
+    '''
+        Natalidad 2011 - 2017
+        Datos: @inegi
+    '''
+    natalidad_2011_2017 = scanner.leer_natalidad_2011_2017('inegi_data/pob_entidades/Natalidad_01.csv')
+    '''
+        Moratlidad 2011 - 2017
+        Datos: @inegi
+    '''
