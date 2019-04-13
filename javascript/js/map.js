@@ -31,12 +31,23 @@ function cargarMarcador(datos) {
         });
         
         google.maps.event.addListener(marker, 'click', (e) => {
+            if(!isEmpty(infowindow)){
+                infowindow.close()
+            }
             infowindow = new google.maps.InfoWindow({
                 content:marker.titulo
-            });
+            });            
             infowindow.open(map,marker);
         });
     });
+}
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
 }
 
 function cargarMapa() {
