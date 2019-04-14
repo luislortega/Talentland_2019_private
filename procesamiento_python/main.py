@@ -31,7 +31,6 @@ if __name__ == "__main__":
     poblacion_2010 = []
     natalidad_2011_2017 = []
     mortalidad_2011_2017 = []
-    poblacion_2010_2017 = []
 
     #Utilidades
     scanner = CsvScannerINEGI()
@@ -57,16 +56,11 @@ if __name__ == "__main__":
         Datos: @inegi
     '''
     mortalidad_2011_2017 = scanner.leer_mortalidad_2011_2017('inegi_data/pob_entidades/Mortalidad_01.csv')
-
-    #Logica
-    poblacion_2010_2017 = controlador.controlador_poblacion_2010_2017(poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017)
-
+    '''
+        Poblacion 2018.
+        Datos: @conapo
+    '''
+    
     #controladores
     controlador.controlador_poblacion_2010(database, poblacion_2010)
-
-
-#print(natalidad_2011_2017)
-    #test = {"t":1}
-        #z = {**test, **natalidad_ordenada[0]}
-        #test = {**test + **natalidad_ordenada}
-        #print(natalidad_ordenada)
+    controlador.controlador_poblacion_2010_2017(database, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017)

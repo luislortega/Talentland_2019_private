@@ -31,3 +31,8 @@ class ConexionDB:
             self.cursor.execute(insert_command)
         print("[✔] Indetidades federativas insertadas con su poblacion en 2010")
     
+    def insertar_poblacion_2010_2017(self, poblacion):
+        print(poblacion[0])
+        print("[DEV] Poblacion hasta el 2017 insertados")
+
+    

@@ -30,7 +30,7 @@ class CsvScannerINEGI:
             for i, row in enumerate(csvfile):
                 if i >= 4:
                     natalidad_2011_2017.append(row.split(";"))
-
+        # AQUI ELIMINAR EL ULTIMO ELEMENTO DE LA LISTA
         for i, elemento in enumerate(natalidad_2011_2017):
             ultimo_elemento = natalidad_2011_2017[i][8].replace("\n","")
             natalidad_ordenada.append({"2011": natalidad_2011_2017[i][2], "2012": natalidad_2011_2017[i][3], "2013": natalidad_2011_2017[i][4], "2014": natalidad_2011_2017[i][5], "2015": natalidad_2011_2017[i][6], "2016":natalidad_2011_2017[i][7], "2017": ultimo_elemento})
@@ -48,7 +48,7 @@ class CsvScannerINEGI:
             for i, row in enumerate(csvfile):
                 if i >= 4:
                     mortalidad_2011_2017.append(row.split(";"))
-        
+        # AQUI ELIMINAR EL ULTIMO ELEMENTO DE LA LISTA
         for i, elemento in enumerate(mortalidad_2011_2017):
             ultimo_elemento = mortalidad_2011_2017[i][8].replace("\n","")
             mortalidad_ordenada.append({"2011": mortalidad_2011_2017[i][2], "2012": mortalidad_2011_2017[i][3], "2013": mortalidad_2011_2017[i][4], "2014": mortalidad_2011_2017[i][5], "2015": mortalidad_2011_2017[i][6], "2016":mortalidad_2011_2017[i][7], "2017": ultimo_elemento})
