@@ -1,91 +1,72 @@
-# Modificaciones a futuro
-# - cambiar la precision de los datos proporcionados por la INEGI
+'''
+@author: Monkey Coders
 
-import csv
-import psycopg2
-#Graphs
-import numpy as np
-from sklearn.svm import SVR
-import matplotlib.pyplot as plt
-#Tables
-import pandas as pd
+Este prototipo en Python con estandar MVC, filtra y procesa los datos para poder ser exportado a otras plataformas.
 
-# DATABASE CONNECTION
-class DatabaseConnection:
-    def __init__(self):
-        try:
-            self.connection = psycopg2.connect("dbname='grupomodelo' user='postgres' host='localhost' password='1298Luis'")
-            self.connection.autocommit = True
-            self.cursor = self.connection.cursor()
-            print("Conectado a la base de datos.")
-        except:
-            print("Error en la conexion")
-    def crear_tablas(self):
-        create_table_command = "CREATE TABLE pib_mexico(id serial PRIMARY KEY, ano int, data float)"
-        self.cursor.execute(create_table_command)
-        print("Tabla creada")
+Condiciones:
+2010 - Actualidad
 
-    def insertar_dato(self, pib):
-        array_pib = []
-        suma_pib = 0
-        ano_base = 1993
-        for x in range(0, 25):
-            for i in range(0, 4):
-                suma_pib += float(pib[i][x])
-            #agrega la informacion
-            insert_command = "INSERT INTO pib_mexico(ano, data) VALUES('"+ str(ano_base) + "', '"+ str(suma_pib) +"')"
-            self.cursor.execute(insert_command)
-            ano_base += 1 # Siguiente año
-            array_pib.append(int(suma_pib))
-            suma_pib = 0 # Reseteo de la suma
-        return array_pib
-# MAIN 
-if __name__ == '__main__':
+Mineria de datos.
+    poblacion, natalidad, mortalidad: https://www.inegi.org.mx/
+    conapo: https://datos.gob.mx/busca/dataset/proyecciones-de-la-poblacion-de-mexico-y-de-las-entidades-federativas-2016-2050/resource/a31f9dbb-4f65-47da-ba44-50eb44a9ad25
 
-    pib = []
-    array_pib = []
-    ## Fechas
-    ano_base = 1993
-    array_anos = []
+Crecimiento poblacional:
+    1. Extraer la poblacion total por entidad federativa
+    2. Extraer la natalidad total por entidad federativa
+    3. Extraer la mortalidad total por entidad federativa
+    4. Calcular la natalidad 2010 hasta la actualidad (Angie)
+    5. Calcular la mortalidad 2010 hasta el actualidad (Angie)
+    6. Con los datos de mortalidad y natalidad calcular la poblacion total hasta 2018   
+    7. Sacar la prediccion de la poblacion 2019
 
-    for x in range(0, 25):
-        array_anos.append(ano_base)
-        ano_base += 1
+Crecimiento economico:
+    En proceso...
+'''
+from classes.conexionDB import ConexionDB
+from classes.csvScanner import CsvScannerINEGI
+from classes.controlador import ControladorDatos
 
-    def leer_pib_total(filename):
-	    with open(filename, 'r') as csvfile:
-		    csvFileReader = csv.reader(csvfile)
-		    next(csvFileReader) 
-		    for row in csvFileReader:
-			    pib.append(row)
-	    return
+if __name__ == "__main__":
+    #Contenedores de informacion
+    poblacion_2010 = []
+    natalidad_2011_2017 = []
+    mortalidad_2011_2017 = []
+    poblacion_2010_2017 = []
 
-    def predict_price(dates, prices, x):
-	    dates = np.reshape(dates,(len(dates), 1)) # converting to matrix of n X 1
-	    svr_poly = SVR(kernel= 'poly', degree= 2)
-	    svr_poly.fit(dates, prices)
-	    plt.scatter(dates, prices, color= 'black', label= 'Datos') # plotting the initial datapoints 
-	    plt.plot(dates,svr_poly.predict(dates), color= 'blue', label= 'Modelo polinomial') # plotting the line made by polynomial kernel
-	    plt.xlabel('Años')
-	    plt.ylabel('Millones de pesos')
-	    plt.title('Producto interno bruto en mexico')
-	    plt.legend()
-	    plt.show()
-	    #return svr_poly.predict(x)[0]
+    #Utilidades
+    scanner = CsvScannerINEGI()
+    database = ConexionDB()
+    controlador = ControladorDatos()
 
-    #Leer PIB de todos los años en todo mexico    
-    leer_pib_total('inegi_data/pib_mexico/data.csv') 
-    conexion_bd = DatabaseConnection()
-    conexion_bd.crear_tablas()
-    array_pib = conexion_bd.insertar_dato(pib)
+    #Base de datos
+    database.limpiar_tablas_postgres()
+    database.crear_tablas_postgres()
 
-    predict_price(array_anos, array_pib, 25)
+    '''
+        Poblacion 2010.
+        Datos: @inegi
+    '''
+    poblacion_2010 = scanner.leer_poblacion_2010('inegi_data/pob_entidades/Poblacion_01.csv')
+    '''
+        Natalidad 2011 - 2017.
+        Datos: @inegi
+    '''
+    natalidad_2011_2017 = scanner.leer_natalidad_2011_2017('inegi_data/pob_entidades/Natalidad_01.csv')
+    '''
+        Moratlidad 2011 - 2017.
+        Datos: @inegi
+    '''
+    mortalidad_2011_2017 = scanner.leer_mortalidad_2011_2017('inegi_data/pob_entidades/Mortalidad_01.csv')
 
-    ## pandas
-    datos = { 'Nombre': ["chalo", "luis", "eyder"], 
-                'Calificaciones': ["4", "9", "10"], 
-                'Deportes': ["futbol", "beisbol", "americano"],
-                'Materias': ["Calculo", "Discretas", "Software"]}
+    #Logica
+    poblacion_2010_2017 = controlador.controlador_poblacion_2010_2017(poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017)
 
-    df = pd.DataFrame(datos)
-    print(df)
+    #controladores
+    controlador.controlador_poblacion_2010(database, poblacion_2010)
+
+
+#print(natalidad_2011_2017)
+    #test = {"t":1}
+        #z = {**test, **natalidad_ordenada[0]}
+        #test = {**test + **natalidad_ordenada}
+        #print(natalidad_ordenada)
