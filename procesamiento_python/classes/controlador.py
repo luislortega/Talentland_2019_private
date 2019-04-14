@@ -14,25 +14,36 @@ class ControladorDatos:
         
         lista_poblacion_2010 = []
         no_lista_poblacion = []
+        lista_final = []
 
         #Obtengo solo el PIB 2010 de la entidad
         for elemento_2010 in poblacion_2010:
+            lista_final.append({"2010": elemento_2010[1]})
             lista_poblacion_2010.append(elemento_2010[1])
         
         for contador_ano in range(2011, 2018):
             entidad_federativa = 0
             for natalidad, mortalidad in zip(natalidad_2011_2017, mortalidad_2011_2017): 
                 poblacion = int(lista_poblacion_2010[entidad_federativa]) + int(natalidad[str(contador_ano)]) - int(mortalidad[str(contador_ano)])       
-                
                 print("AÑO: "+ str(contador_ano)+" Posicion: " +str(entidad_federativa) +" Poblacion guardada:" +lista_poblacion_2010[entidad_federativa]+ " NATALIDAD: "+natalidad[str(contador_ano)]+ " MORTALIDAD: "+mortalidad[str(contador_ano)])
                 print("Poblacion total "+str(poblacion))
-                
                 no_lista_poblacion.append({str(contador_ano):str(poblacion)})
                 lista_poblacion_2010[entidad_federativa] = str(poblacion)
                 entidad_federativa += 1
-           # print("HERE is"+str(contador_ano))
-        #for natalidad, mortalidad in zip(natalidad_2011_2017, mortalidad_2011_2017):
-            #print()
-        print(no_lista_poblacion)
+        
+        test = {"t":1}
+        test2 = {"1":2}
+        z = {**test, **test2}
+        #test = {**test + **natalidad_ordenada}
+        print(z)
+        # RECORRIDO 
+        for x in range(0, 32):
+            #lista_final[x] = {**lista_final[x], {"2011": "test"}} 
+            z = {"2011": "test"} 
+            y = {**lista_final[x], **z}
+            #print(lista_final[x])
+            print(no_lista_poblacion[x+32])
+
+        #print(lista_final)
         print("[DEV] Calculando la poblacion 2010 - 2017 con la recopilacion de datos")
     
