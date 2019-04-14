@@ -32,7 +32,9 @@ class ConexionDB:
         print("[✔] Indetidades federativas insertadas con su poblacion en 2010")
     
     def insertar_poblacion_2010_2017(self, poblacion):
-        print(poblacion[0])
-        print("[DEV] Poblacion hasta el 2017 insertados")
+        for x in range(1,33):
+            update_command = "UPDATE entidad_federativa SET poblacion='"+json.dumps(poblacion[x-1])+"' WHERE id="+str(x)
+            self.cursor.execute(update_command)
+        print("[✔] Poblacion hasta el 2017 insertados")
 
     
