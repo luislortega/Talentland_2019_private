@@ -125,32 +125,34 @@ class ControladorDatos:
         database.insertar_entidades_poblacion_2010(entidades_federativas, poblacion)
     # Obteno los resultados calculado desde el 2010 hasta el 2017 poblacion_2011 = poblacion_2010 + natalidad_2011 - mortalidad_2011 
     def controlador_poblacion_2010_2017(self, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017):
-        for i, entidad_federativa in enumerate(poblacion_2010):
-            poblacion_entidad_federativa = int(entidad_federativa[1])
-            if(i == 0):
-                ##PROBLEMS HERE
-                for natalidad, mortalidad in zip(natalidad_2011_2017, mortalidad_2011_2017):
-                    for contador_ano in range(2011, 2018):
-                        poblacion_entidad_federativa = int(poblacion_entidad_federativa) + int(natalidad[str(contador_ano)]) - int(mortalidad[str(contador_ano)])
-                        print("Entidad: " +str(i)+"Poblacion de: "+str(contador_ano) +" es de:"+ str(poblacion_entidad_federativa))
-            
-            '''
-            salidas: 
-            AGUASCALIENTES:
-                2010: 1184996
-                2011: 1184996 + 27427 - 4934
-                2012: (1184996 + 27427 - 4934) + 26933 - 5267
-            '''
-        print("[DEV] Calculando la poblacion 2010 - 2017 con la recopilacion de datos")
         
+        lista_poblacion_2010 = []
+        no_lista_poblacion = []
+
+        #Obtengo solo el PIB 2010 de la entidad
+        for elemento_2010 in poblacion_2010:
+            lista_poblacion_2010.append(elemento_2010[1])
+        
+        for contador_ano in range(2011, 2018):
+            lugar = 0
+            for natalidad, mortalidad in zip(natalidad_2011_2017, mortalidad_2011_2017): 
+                poblacion = int(lista_poblacion_2010[lugar]) + int(natalidad[str(contador_ano)]) - int(mortalidad[str(contador_ano)])       
+                print("AÑO: "+ str(contador_ano)+" Posicion: " +str(lugar) +" Poblacion guardada:" +lista_poblacion_2010[lugar]+ " NATALIDAD: "+natalidad[str(contador_ano)]+ " MORTALIDAD: "+mortalidad[str(contador_ano)])
+                print("Poblacion total "+str(poblacion))
+                lista_poblacion_2010[lugar] = str(poblacion)
+                lugar += 1
+           # print("HERE is"+str(contador_ano))
+        #for natalidad, mortalidad in zip(natalidad_2011_2017, mortalidad_2011_2017):
+            #print()
+        print("[DEV] Calculando la poblacion 2010 - 2017 con la recopilacion de datos")
     
 if __name__ == "__main__":
     #Contenedores de informacion
-    poblacion_2010_2017 = []
     poblacion_2010 = []
     natalidad_2011_2017 = []
     mortalidad_2011_2017 = []
-    
+    poblacion_2010_2017 = []
+
     #Utilidades
     scanner = CsvScannerINEGI()
     database = ConexionDB()
