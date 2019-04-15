@@ -10,7 +10,8 @@ Mineria de datos.
     inegi: https://www.inegi.org.mx/
     conapo: https://datos.gob.mx/busca/dataset/proyecciones-de-la-poblacion-de-mexico-y-de-las-entidades-federativas-2016-2050/resource/a31f9dbb-4f65-47da-ba44-50eb44a9ad25
     impi: https://datos.gob.mx/busca/dataset/informacion-estadistica-de-invenciones-signos-distintivos-y-proteccion-a-la-propiedad-intelectu
-
+    sectur: https://www.datatur.sectur.gob.mx
+    
 Crecimiento poblacional:
     1. Extraer la poblacion total por entidad federativa
     2. Extraer la natalidad total por entidad federativa
