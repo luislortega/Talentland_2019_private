@@ -25,8 +25,3 @@ Para la solución final (Webapp, etc.):
 
 * Escalabilidad de la aplicación
 * No delay en el cálculo
-
-## Bitacora
-
-11/04/19 Pude extraer el PIB desde 1993 hasta el 2017 con datos de la INEGI.
-- Falto la regresion linear
