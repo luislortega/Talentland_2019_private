@@ -55,3 +55,15 @@ class CsvScannerINEGI:
         
         print("[✔] Mortalidad del 2011 - 2017 minada. Fuente: INEGI")
         return mortalidad_ordenada
+    
+    def leer_poblacion_2018(self, filename):
+        print("[DEV] Poblacion del 2018 minada. Fuente: CONAPO")
+        '''
+        with open(filename, 'r') as csvfile:
+            csvFileReader = csv.reader(csvfile)
+            for row in csvfile:
+                print(row)
+        return 
+        '''
+    def leer_patentes_2015_2018(self, filename):
+        print("[DEV] Patentes por entidad federativa 2015 - 2018. Fuente: IMPI")
