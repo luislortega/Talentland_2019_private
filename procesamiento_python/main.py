@@ -1,5 +1,6 @@
 '''
 @author: Monkey Coders
+@version: 1
 
 Este prototipo en Python con estandar MVC, filtra y procesa los datos para poder ser exportado a otras plataformas.
 
@@ -11,7 +12,7 @@ Mineria de datos.
     conapo: https://datos.gob.mx/busca/dataset/proyecciones-de-la-poblacion-de-mexico-y-de-las-entidades-federativas-2016-2050/resource/a31f9dbb-4f65-47da-ba44-50eb44a9ad25
     impi: https://datos.gob.mx/busca/dataset/informacion-estadistica-de-invenciones-signos-distintivos-y-proteccion-a-la-propiedad-intelectu
     sectur: https://www.datatur.sectur.gob.mx
-    
+
 Crecimiento poblacional:
     1. Extraer la poblacion total por entidad federativa
     2. Extraer la natalidad total por entidad federativa
@@ -67,7 +68,7 @@ if __name__ == "__main__":
         Poblacion 2018.
         Datos: @conapo
     '''
-    poblacion_2018 = scanner.leer_poblacion_2018('conapo_data/poblacion.csv')
+    poblacion_2018 = scanner.leer_poblacion_2018('conapo_data/pob_ini_proyecciones.csv')
     '''
         Patentes registradas por entidad federativa 2015 - 2018
         Datos: @conapo

@@ -58,12 +58,27 @@ class CsvScannerINEGI:
     
     def leer_poblacion_2018(self, filename):
         print("[DEV] Poblacion del 2018 minada. Fuente: CONAPO")
-        '''
+        poblacion_2018 = []
+
         with open(filename, 'r') as csvfile:
             csvFileReader = csv.reader(csvfile)
+
+            contador = 0
+            cambios = 0
+
             for row in csvfile:
-                print(row)
+                #220 datos
+                if(row.split(",")[1] == '2018' and row.split(",")[2] != 'República Mexicana'):
+                    #print(row.split(",")[6])
+                    #poblacion_2018.append(row.split(",")[6])
+                    poblacion_2018.append("0")
+
+                    if contador % 220 == 1:
+                        cambios += 1
+                    else:
+                        poblacion_2018.append(1)
+                    contador += 1
         return 
-        '''
+        
     def leer_patentes_2015_2018(self, filename):
         print("[DEV] Patentes por entidad federativa 2015 - 2018. Fuente: IMPI")
