@@ -37,7 +37,7 @@ if __name__ == "__main__":
     poblacion_2010 = []
     natalidad_2011_2017 = []
     mortalidad_2011_2017 = []
-    poblacion_2018 = []
+    poblacion_2018_2019 = []
     patentes_2015_2018 = []
 
     #Utilidades
@@ -65,10 +65,10 @@ if __name__ == "__main__":
     '''
     mortalidad_2011_2017 = scanner.leer_mortalidad_2011_2017('inegi_data/pob_entidades/Mortalidad_01.csv')
     '''
-        Poblacion 2018.
+        Proyecciones de poblacion 2018.
         Datos: @conapo
     '''
-    poblacion_2018 = scanner.leer_poblacion_2018('conapo_data/pob_ini_proyecciones.csv')
+    poblacion_2018_2019 = scanner.leer_poblacion_2018('conapo_data/pob_ini_proyecciones.csv')
     '''
         Patentes registradas por entidad federativa 2015 - 2018
         Datos: @conapo
