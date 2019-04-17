@@ -55,3 +55,12 @@ class ControladorDatos:
 
         print("[✔] Procesamiento de +500.000 de datos para obtener las aproximaciones del 2018 y 2019")
         database.insertar_poblacion_2018_2019(poblacion_2018_2019)
+
+    def controlador_patentes_2010_2018(self, database, patentes_2010_2018):
+        patentes_2010_2018_final = []
+
+        for x in range(0, 32):
+            patentes_2010_2018_final.append({"2010": patentes_2010_2018[x][1],
+             "2011": patentes_2010_2018[x][2], "2012": patentes_2010_2018[x][3], "2013": patentes_2010_2018[x][4]})
+
+        print("[DEV] Procesamiento de las patentes 2010 hasta el 2018")

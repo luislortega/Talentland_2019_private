@@ -35,10 +35,10 @@ from classes.controlador import ControladorDatos
 if __name__ == "__main__":
     #Contenedores de informacion
     poblacion_2010 = []
-    natalidad_2011_2017 = []
-    mortalidad_2011_2017 = []
+    natalidad_2010_2017 = []
+    mortalidad_2010_2017 = []
     poblacion_2018_2019 = []
-    patentes_2015_2018 = []
+    patentes_2010_2018 = []
 
     #Utilidades
     scanner = CsvScannerINEGI()
@@ -58,12 +58,12 @@ if __name__ == "__main__":
         Natalidad 2011 - 2017.
         Datos: @inegi
     '''
-    natalidad_2011_2017 = scanner.leer_natalidad_2011_2017('inegi_data/pob_entidades/Natalidad_01.csv')
+    natalidad_2010_2017 = scanner.leer_natalidad_2010_2017('inegi_data/pob_entidades/Natalidad_01.csv')
     '''
         Moratlidad 2011 - 2017.
         Datos: @inegi
     '''
-    mortalidad_2011_2017 = scanner.leer_mortalidad_2011_2017('inegi_data/pob_entidades/Mortalidad_01.csv')
+    mortalidad_2010_2017 = scanner.leer_mortalidad_2010_2017('inegi_data/pob_entidades/Mortalidad_01.csv')
     '''
         Proyecciones de poblacion 2018.
         Datos: @conapo
@@ -73,9 +73,10 @@ if __name__ == "__main__":
         Patentes registradas por entidad federativa 2015 - 2018
         Datos: @conapo
     '''
-    patentes_2015_2018 = scanner.leer_patentes_2015_2018(['impi_data/patentes_2018.csv', 'impi_data/patentes_2017.csv', 'impi_data/patentes_2016.csv', 'impi_data/patentes_2015.csv'])
-    
+    patentes_2010_2018 = scanner.leer_patentes_2010_2018('impi_data/patentes.csv')
+
     #controladores
     controlador.controlador_poblacion_2010(database, poblacion_2010)
-    controlador.controlador_poblacion_2010_2017(database, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017)
-    controlador.controlador_poblacion_2018_2019(database, poblacion_2018_2019)
+    #controlador.controlador_poblacion_2010_2017(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017)
+    #controlador.controlador_poblacion_2018_2019(database, poblacion_2018_2019)
+    controlador.controlador_patentes_2010_2018(database, patentes_2010_2018)
