@@ -12,7 +12,7 @@ class ConexionDB:
             print("[x] Error en la conexion")
 
     def crear_tablas_postgres(self):
-        create_table_command = "CREATE TABLE entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), lat varchar, long varchar, actividades_economicas JSON, poblacion JSON, natalidad JSON, mortalidad JSON)"
+        create_table_command = "CREATE TABLE entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), lat varchar, long varchar, actividades_economicas JSON, poblacion JSON, natalidad JSON, mortalidad JSON, turismo JSON)"
         self.cursor.execute(create_table_command)
         create_table_command = "CREATE TABLE pib_mexico(id serial PRIMARY KEY, ano int, data float)"
         self.cursor.execute(create_table_command)
@@ -36,5 +36,10 @@ class ConexionDB:
             update_command = "UPDATE entidad_federativa SET poblacion='"+json.dumps(poblacion[x-1])+"' WHERE id="+str(x)
             self.cursor.execute(update_command)
         print("[✔] Poblacion hasta el 2017 insertados")
+    
+    def insertar_poblacion_2018_2019(self, poblacion):
+        print(poblacion)
+        print("[DEV] insertando poblacion del 2018 y 2019")
+        
 
     

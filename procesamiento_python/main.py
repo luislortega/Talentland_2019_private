@@ -78,3 +78,4 @@ if __name__ == "__main__":
     #controladores
     controlador.controlador_poblacion_2010(database, poblacion_2010)
     controlador.controlador_poblacion_2010_2017(database, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017)
+    controlador.controlador_poblacion_2018_2019(database, poblacion_2018_2019)

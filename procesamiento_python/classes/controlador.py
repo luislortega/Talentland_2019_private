@@ -33,4 +33,26 @@ class ControladorDatos:
         
         print("[✔] Calculos matematicos para obtener la poblacion hasta el 2017 Pt = Pi + Nt - Mt")
         database.insertar_poblacion_2010_2017(lista_final)
-    
+
+    def controlador_poblacion_2018_2019(self,database, poblacion_total):
+        poblacion_2018 = poblacion_total[0]
+        poblacion_2019 = poblacion_total[1]
+        poblacion_2018_ordenada = []
+        poblacion_2019_ordenada = []
+        poblacion_2018_2019 = []
+        contador_entidad = 1
+
+        for x in range(0, 32):
+            poblacion_2018_ordenada.append(0)
+            poblacion_2019_ordenada.append(0)
+
+        for x in range(1, (219*32)):
+            poblacion_2018_ordenada[contador_entidad-1] += int(poblacion_2018[x].replace("\n", ""))
+            poblacion_2019_ordenada[contador_entidad-1] += int(poblacion_2019[x].replace("\n", ""))
+            if x == ((219*contador_entidad)+(contador_entidad-1)):
+                contador_entidad += 1
+            
+        for x in range(0, 32):
+            poblacion_2018_2019.append({"2018": poblacion_2018_ordenada[x], "2019": poblacion_2019_ordenada[x]})
+        print("[✔] Procesamiento de +500.000 de datos para obtener las aproximaciones del 2018 y 2019")
+        database.insertar_poblacion_2018_2019(poblacion_2018_2019)
