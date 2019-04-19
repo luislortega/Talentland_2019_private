@@ -39,6 +39,7 @@ if __name__ == "__main__":
     mortalidad_2010_2017 = []
     poblacion_2018_2019 = []
     patentes_2010_2018 = []
+    unidades_economicas_2013_2018 = []
 
     #Utilidades
     scanner = CsvScannerINEGI()
@@ -74,9 +75,20 @@ if __name__ == "__main__":
         Datos: @conapo
     '''
     patentes_2010_2018 = scanner.leer_patentes_2010_2018('impi_data/patentes.csv')
+    '''
+        Unidades economicas registradas en cada entidad federativa 2013 - 2018
+        Datos: @denue
+    '''
+    unidades_economicas_2013_2018 = scanner.leer_unidades_economicas_2013_2018('inegi_data/neg_entidades/negocios.csv')
 
     #controladores
     controlador.controlador_poblacion_2010(database, poblacion_2010)
     #controlador.controlador_poblacion_2010_2017(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017)
     #controlador.controlador_poblacion_2018_2019(database, poblacion_2018_2019)
     #controlador.controlador_patentes_2010_2018(database, patentes_2010_2018)
+
+    '''
+        Datos genericos (Por default minados)
+        Datos: @todos
+    '''
+    print("[DEV] Actualizacion de datos genericos para mejorar la precision de la aplicacion")

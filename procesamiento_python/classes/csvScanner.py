@@ -85,3 +85,10 @@ class CsvScannerINEGI:
 
         print("[✔] Patentes por entidad federativa 2010 - 2018. Fuente: IMPI")
         return patentes_2010_2018
+
+    def leer_unidades_economicas_2013_2018(self, filename):
+        with open(filename, 'r') as csvfile:
+            csvFileReader = csv.reader(csvfile)
+            for i, row in enumerate(csvfile):
+                print(row)
+        print("[DEV] Unidades economicas por entidad federativa 2013 - 2018. Fuente: DENUE")
