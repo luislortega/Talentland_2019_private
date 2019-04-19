@@ -18,10 +18,10 @@ function initMap() {
     ]
     cargarMapa();
     /* envia los JSON de la informacion */
-    cargarMarcador(datos);
+    cargarMarcadores(datos);
 }
 
-function cargarMarcador(datos) {
+function cargarMarcadores(datos) {
     datos.forEach(elemento => {
         let location = new google.maps.LatLng(elemento.lat, elemento.long)
         let marker = new google.maps.Marker({

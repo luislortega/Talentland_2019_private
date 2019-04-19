@@ -70,15 +70,13 @@ class ControladorDatos:
         unidades_economicas_2013_2018_final = []
 
         for x in range(0, 32):
-            #Limpieza de caracteres especiales
+
             for y in range(0, 7):      
                 unidades_economicas_2013_2018[x][y] = unidades_economicas_2013_2018[x][y].replace(",","")         
                 unidades_economicas_2013_2018[x][y] = unidades_economicas_2013_2018[x][y].replace('"',"")
                 unidades_economicas_2013_2018[x][y] = unidades_economicas_2013_2018[x][y].replace('\n',"")
-            
-            unidades_economicas_2013_2018_final.append({"2013": "lul"})
 
-        print(unidades_economicas_2013_2018_final)
-        # limpiar caracteres especiales
+            unidades_economicas_2013_2018_final.append({"2013": unidades_economicas_2013_2018[x][1], "2014": unidades_economicas_2013_2018[x][2], "2015": unidades_economicas_2013_2018[x][3], "2016":unidades_economicas_2013_2018[x][4], "2017": unidades_economicas_2013_2018[x][5], "2018":unidades_economicas_2013_2018[x][6]})
 
-        print("[DEV] Procesamiento de las unidades economicas del 2013 hasta el 2018")
+        print("[✔] Procesamiento de las unidades economicas del 2013 hasta el 2018")
+        database.insertar_controlador_unidades_economicas_2013_2018(unidades_economicas_2013_2018_final)
