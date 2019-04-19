@@ -86,6 +86,7 @@ if __name__ == "__main__":
     #controlador.controlador_poblacion_2010_2017(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017)
     #controlador.controlador_poblacion_2018_2019(database, poblacion_2018_2019)
     #controlador.controlador_patentes_2010_2018(database, patentes_2010_2018)
+    controlador.controlador_unidades_economicas_2013_2018(database, unidades_economicas_2013_2018)
 
     '''
         Datos genericos (Por default minados)

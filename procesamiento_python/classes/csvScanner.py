@@ -87,8 +87,13 @@ class CsvScannerINEGI:
         return patentes_2010_2018
 
     def leer_unidades_economicas_2013_2018(self, filename):
+        unidades_economicas_2013_2018 = []
+
         with open(filename, 'r') as csvfile:
             csvFileReader = csv.reader(csvfile)
             for i, row in enumerate(csvfile):
-                print(row)
-        print("[DEV] Unidades economicas por entidad federativa 2013 - 2018. Fuente: DENUE")
+                if i >= 1:
+                    unidades_economicas_2013_2018.append(row.split(',"'))
+
+        print("[✔] Unidades economicas por entidad federativa 2013 - 2018. Fuente: DENUE")
+        return unidades_economicas_2013_2018        
