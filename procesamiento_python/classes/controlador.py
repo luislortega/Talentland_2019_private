@@ -60,7 +60,8 @@ class ControladorDatos:
         patentes_2010_2018_final = []
 
         for x in range(0, 32):
-            patentes_2010_2018_final.append({"2010": patentes_2010_2018[x][1],
-             "2011": patentes_2010_2018[x][2], "2012": patentes_2010_2018[x][3], "2013": patentes_2010_2018[x][4]})
+            ultimo_valor = patentes_2010_2018[x][9].replace("\n", "")
+            patentes_2010_2018_final.append({"2010": patentes_2010_2018[x][1], "2011": patentes_2010_2018[x][2], "2012": patentes_2010_2018[x][3], "2013": patentes_2010_2018[x][4], "2014": patentes_2010_2018[x][5], "2015":patentes_2010_2018[x][6], "2016": patentes_2010_2018[x][7], "2017": patentes_2010_2018[x][8], "2018": ultimo_valor})
 
-        print("[DEV] Procesamiento de las patentes 2010 hasta el 2018")
+        print("[✔] Procesamiento de las patentes 2010 hasta el 2018")
+        database.insertar_patentes_2010_2018(patentes_2010_2018_final)

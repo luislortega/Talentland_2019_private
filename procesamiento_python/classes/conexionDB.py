@@ -44,7 +44,7 @@ class ConexionDB:
             contenacion_datos = {**entidades_federativas[x-1][5], **poblacion[x-1]}
             update_command = "UPDATE entidad_federativa SET poblacion='"+json.dumps(contenacion_datos)+"' WHERE id="+str(x)
             self.cursor.execute(update_command)
-        print("[✔] Poblacion del 2018 y 2019 insertados en la base de datos")
-        
+        print("[✔] Poblacion del 2018 y 2019 insertados en la base de datos")  
 
-    
+    def insertar_patentes_2010_2018(self, patentes):
+        print("[DEV] Patentes 2010 hasta el 2018 insetadas en la base de datos")
