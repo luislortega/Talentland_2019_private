@@ -10,7 +10,7 @@ class ControladorDatos:
         database.insertar_entidades_poblacion_2010(entidades_federativas, poblacion)
 
     # Obteno los resultados calculado desde el 2010 hasta el 2017 poblacion_2011 = poblacion_2010 + natalidad_2011 - mortalidad_2011 
-    def controlador_poblacion_2010_2017(self, database, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017):
+    def controlador_poblacion_2010_2017(self, database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017):
         lista_poblacion_2010 = []
         no_lista_poblacion = []
         lista_final = []
@@ -19,7 +19,7 @@ class ControladorDatos:
             lista_poblacion_2010.append(elemento_2010[1])
         for contador_ano in range(2011, 2018):
             entidad_federativa = 0
-            for natalidad, mortalidad in zip(natalidad_2011_2017, mortalidad_2011_2017): 
+            for natalidad, mortalidad in zip(natalidad_2010_2017, mortalidad_2010_2017): 
                 poblacion = int(lista_poblacion_2010[entidad_federativa]) + int(natalidad[str(contador_ano)]) - int(mortalidad[str(contador_ano)])       
                 no_lista_poblacion.append({str(contador_ano):str(poblacion)})
                 lista_poblacion_2010[entidad_federativa] = str(poblacion)
@@ -89,10 +89,29 @@ class ControladorDatos:
             if pib != 0:
                 pib_mexico_2010_2018.append(pib)
                 pib = 0
-                    
         for x in range(2010, 2019):
             pib_mexico_1993_2018_final.append({str(x):pib_mexico_2010_2018[x-2010]})
-
-        print(pib_mexico_1993_2018_final)
         print("[✔] Procesamiento del pib total en mexico desde 1993 hasta el 2018")
         database.insertar_pib_mexico_2010_2018(pib_mexico_1993_2018_final)
+
+    def controlador_poblacion_mexico_2010_2018(self, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017, poblacion_2018_2019):
+        lista_poblacion_2010 = []
+        no_lista_poblacion = []
+        lista_final = []
+        for elemento_2010 in poblacion_2010:
+            lista_final.append({"2010": elemento_2010[1]})
+            lista_poblacion_2010.append(elemento_2010[1])
+        for contador_ano in range(2011, 2018):
+            entidad_federativa = 0
+            for natalidad, mortalidad in zip(natalidad_2011_2017, mortalidad_2011_2017): 
+                poblacion = int(lista_poblacion_2010[entidad_federativa]) + int(natalidad[str(contador_ano)]) - int(mortalidad[str(contador_ano)])       
+                no_lista_poblacion.append({str(contador_ano):str(poblacion)})
+                lista_poblacion_2010[entidad_federativa] = str(poblacion)
+                entidad_federativa += 1
+        for x in range(0, 32):
+            lista_final[x] = {**lista_final[x], **no_lista_poblacion[x],**no_lista_poblacion[x+32], **no_lista_poblacion[x+64], **no_lista_poblacion[x+96], **no_lista_poblacion[x+128], **no_lista_poblacion[x+160], **no_lista_poblacion[x+192]}
+        
+        #print(lista_final[0]["2010"])
+        print(lista_final)
+        # SACAR EL CALCULO DE LA POBLACION TOTAL.
+        print("[DEV] Procesamiento de la poblacion total de Mexico 2010 - 2018 minados. Fuente: INEGI y CONAPO")

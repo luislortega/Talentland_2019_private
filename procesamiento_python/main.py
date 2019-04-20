@@ -42,7 +42,7 @@ if __name__ == "__main__":
     unidades_economicas_2013_2018 = []
     turistas_2010_2018 = []
     pib_mexico_1993_2018 = []
-
+    
     #Utilidades
     scanner = CsvScannerINEGI()
     database = ConexionDB()
@@ -108,6 +108,7 @@ if __name__ == "__main__":
     #controlador.controlador_unidades_economicas_2013_2018(database, unidades_economicas_2013_2018)
     #controlador.controlador_turistas_2010_2018(database, turistas_2010_2018)
     controlador.controlador_pib_mexico_1993_2018(database, pib_mexico_1993_2018)
+    controlador.controlador_poblacion_mexico_2010_2018(poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017, poblacion_2018_2019)
 
     '''
         Datos genericos (Por default minados)

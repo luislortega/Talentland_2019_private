@@ -101,6 +101,5 @@ class CsvScannerINEGI:
             csvFileReader = csv.reader(csvfile)
             for row in csvfile:
                 pib_mexico_1993_2018.append(row.split(","))
-
         print("[✔] PIB de Mexico 1993 - 2018 minados. Fuente: INEGI")
         return pib_mexico_1993_2018
