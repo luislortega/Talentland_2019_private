@@ -94,10 +94,28 @@ class ControladorDatos:
         print("[✔] Procesamiento del pib total en mexico desde 1993 hasta el 2018")
         database.insertar_pib_mexico_2010_2018(pib_mexico_1993_2018_final)
 
-    def controlador_poblacion_mexico_2010_2018(self, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017, poblacion_2018_2019):
+    def controlador_poblacion_mexico_2010_2018(self, database, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017, poblacion_2018_2019):
+        poblacion_2018_ordenada = []
+        poblacion_2019_ordenada = []
+        poblacion_2018_2019_final = []
         lista_poblacion_2010 = []
         no_lista_poblacion = []
         lista_final = []
+        contador_entidad = 1
+
+        # POBLACION 2018 - 2019
+        for x in range(0, 32):
+            poblacion_2018_ordenada.append(0)
+            poblacion_2019_ordenada.append(0)
+        for x in range(1, (219*32)):
+            poblacion_2018_ordenada[contador_entidad-1] += int(poblacion_2018_2019[0][x].replace("\n", ""))
+            poblacion_2019_ordenada[contador_entidad-1] += int(poblacion_2018_2019[1][x].replace("\n", ""))
+            if x == ((219*contador_entidad)+(contador_entidad-1)):
+                contador_entidad += 1
+        for x in range(0, 32):
+            poblacion_2018_2019_final.append({"2018": poblacion_2018_ordenada[x], "2019": poblacion_2019_ordenada[x]})
+
+        # POBLACION 2010 - 2017
         for elemento_2010 in poblacion_2010:
             lista_final.append({"2010": elemento_2010[1]})
             lista_poblacion_2010.append(elemento_2010[1])
@@ -112,6 +130,15 @@ class ControladorDatos:
             lista_final[x] = {**lista_final[x], **no_lista_poblacion[x],**no_lista_poblacion[x+32], **no_lista_poblacion[x+64], **no_lista_poblacion[x+96], **no_lista_poblacion[x+128], **no_lista_poblacion[x+160], **no_lista_poblacion[x+192]}
         
         #print(lista_final[0]["2010"])
-        print(lista_final)
+        print(poblacion_2018_2019_final)
         # SACAR EL CALCULO DE LA POBLACION TOTAL.
+        for x in range(0, 32):
+            lista_final[x] = {**lista_final[x], **poblacion_2018_2019_final[x]}
+        
+        for x in range(2010, 2020):
+            sumatoria = 0
+            for y in range(0, 32):
+                sumatoria += int(lista_final[y][str(x)]) 
+            print(sumatoria)
+            
         print("[DEV] Procesamiento de la poblacion total de Mexico 2010 - 2018 minados. Fuente: INEGI y CONAPO")
