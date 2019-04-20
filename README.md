@@ -25,3 +25,16 @@ Para la solución final (Webapp, etc.):
 
 * Escalabilidad de la aplicación
 * No delay en el cálculo
+
+## Elementos a tomar en cuenta
+Puede ser del 2014 a la fecha
+
+[x] Producto Interno Bruto de las – Entidades Federativas (PIBE)
+[ ] Indicador Trimestral de Actividad Económica Estatal (ITAEE)
+[x] Indicadores poblacionales por ciudad/entidad federativa
+[ ] Indicadores económicos por ciudad/entidad federativa (Nivel – Socioeconómico, PIB percápita, gasto en consumo, etc)
+[x] Datos abiertos gubernamentales ( https://datos.gob.mx/ )
+[ ] Cualquier base de datos relevante que ayude a explicar el crecimiento de entidades en México
+[x] Consejo Nacional de Población  https://www.gob.mx/conapo
+[ ] Información transaccional de la Comisión Nacional Bancaria de Valores (CNVB)
+[ ] Cualquier base de datos relevante que ayude a explicar el crecimiento de entidades en México, siempre y cuando el origen sea abierto y público
