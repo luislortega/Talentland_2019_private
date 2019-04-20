@@ -78,10 +78,17 @@ class ControladorDatos:
         database.insertar_turistas_2010_2018(turistas_2010_2018_final)
 
     def controlador_pib_mexico_1993_2018(self, database, pib_mexico_1993_2018):
+        pib_mexico_2010_2018 = []
         pib_mexico_1993_2018 = pib_mexico_1993_2018[1:len(pib_mexico_1993_2018)]
-        for x in range(0, 24):
+        for x in range(0, 26):
+            pib = 0 #valor inicial
             for y in range(0, 4):
-                if x >= 18:
-                    print(pib_mexico_1993_2018[y][x])
+                if x >= 17:
+                    pib += float(pib_mexico_1993_2018[y][x])
+            if pib != 0:
+                pib_mexico_2010_2018.append(pib)
+                pib = 0
+                    
+        print(pib_mexico_2010_2018)
         
         print("[DEV] Procesamiento del pib total en mexico desde 1993 hasta el 2018")
