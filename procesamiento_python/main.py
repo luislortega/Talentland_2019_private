@@ -71,7 +71,7 @@ if __name__ == "__main__":
         Proyecciones de poblacion 2018.
         Datos: @conapo
     '''
-    poblacion_2018_2019 = scanner.leer_poblacion_2018('conapo_data/pob_ini_proyecciones.csv')
+    poblacion_2018_2019 = scanner.leer_poblacion_2018_2019('conapo_data/pob_ini_proyecciones.csv')
     '''
         Patentes registradas por entidad federativa 2015 - 2018
         Datos: @impi

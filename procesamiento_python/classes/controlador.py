@@ -93,5 +93,6 @@ class ControladorDatos:
         for x in range(2010, 2019):
             pib_mexico_1993_2018_final.append({str(x):pib_mexico_2010_2018[x-2010]})
 
+        print(pib_mexico_1993_2018_final)
         print("[✔] Procesamiento del pib total en mexico desde 1993 hasta el 2018")
         database.insertar_pib_mexico_2010_2018(pib_mexico_1993_2018_final)

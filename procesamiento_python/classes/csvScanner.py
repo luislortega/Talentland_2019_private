@@ -50,7 +50,7 @@ class CsvScannerINEGI:
         return mortalidad_ordenada
 
     # Extrae los datos minados de CONAPO, sobre la mortalidad 2011 - 2017
-    def leer_poblacion_2018(self, filename):
+    def leer_poblacion_2018_2019(self, filename):
         poblacion_2018 = []
         poblacion_2019 = []
         poblacion_2018_2019 = []
