@@ -30,7 +30,7 @@ Para la solución final (Webapp, etc.):
 Puede ser del 2014 a la fecha
 
 - [x] Producto Interno Bruto de las – Entidades Federativas (PIBE)
-- [ ] Indicador Trimestral de Actividad Económica Estatal (ITAEE)
+- [x] Indicador Trimestral de Actividad Económica Estatal (ITAEE)
 - [x] Indicadores poblacionales por ciudad/entidad federativa
 - [ ] Indicadores económicos por ciudad/entidad federativa (Nivel – Socioeconómico, PIB percápita, gasto en consumo, etc)
 - [x] Datos abiertos gubernamentales ( https://datos.gob.mx/ )

@@ -14,14 +14,14 @@ class ConexionDB:
     def crear_tablas_postgres(self):
         create_table_command = "CREATE TABLE entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), lat varchar, long varchar, actividades_economicas JSON, poblacion JSON, patentes JSON, unidades_economicas JSON, turismo JSON)"
         self.cursor.execute(create_table_command)
-        create_table_command = "CREATE TABLE pib_mexico(id serial PRIMARY KEY, ano int, data float)"
+        create_table_command = "CREATE TABLE mexico(id serial PRIMARY KEY, pib JSON)"
         self.cursor.execute(create_table_command)
         print("[✔] Tablas de la bse de datos creadas")
 
     def limpiar_tablas_postgres(self):
         drop_table_command = "DROP TABLE entidad_federativa"
         self.cursor.execute(drop_table_command)
-        drop_table_command = "DROP TABLE pib_mexico"
+        drop_table_command = "DROP TABLE mexico"
         self.cursor.execute(drop_table_command)
         print("[✔] Limpieza en las tablas en la base de datos")
 
@@ -63,3 +63,7 @@ class ConexionDB:
             update_command = "UPDATE entidad_federativa SET turismo='"+json.dumps(turistas_2010_2018[x-1])+"' where id="+str(x)
             self.cursor.execute(update_command)
         print("[✔] Turistas por entidad federativa del 2010 hasta el 2018 insertadas en la base de datos")
+
+    def insertar_pib_mexico_2010_2018(self, pib_mexico_2010_2018):
+        print(pib_mexico_2010_2018)
+        print("[DEV] Pib total de Mexico por año del 2010 hasta el 2018 insertado en la base de datos")
