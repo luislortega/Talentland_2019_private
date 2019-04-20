@@ -41,6 +41,7 @@ if __name__ == "__main__":
     patentes_2010_2018 = []
     unidades_economicas_2013_2018 = []
     turistas_2010_2018 = []
+    pib_mexico_1993_2018 = []
 
     #Utilidades
     scanner = CsvScannerINEGI()
@@ -90,6 +91,7 @@ if __name__ == "__main__":
         PIB de Mexico 2010 - 2018
         Datos: @inegi
     '''
+    pib_mexico_1993_2018 = scanner.leer_pib_mexico_1993_2018('inegi_data/pib_mexico/pib_mexico.csv')
     '''
         PIB por entidad federativa 2010 - 2017
         Datos: @inegi
@@ -101,6 +103,7 @@ if __name__ == "__main__":
     #controlador.controlador_patentes_2010_2018(database, patentes_2010_2018)
     #controlador.controlador_unidades_economicas_2013_2018(database, unidades_economicas_2013_2018)
     #controlador.controlador_turistas_2010_2018(database, turistas_2010_2018)
+    controlador.controlador_pib_mexico_1993_2018(database, pib_mexico_1993_2018)
 
     '''
         Datos genericos (Por default minados)
