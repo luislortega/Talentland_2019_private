@@ -38,3 +38,9 @@ Puede ser del 2014 a la fecha
 - [x] Consejo Nacional de Población  https://www.gob.mx/conapo
 - [ ] Información transaccional de la Comisión Nacional Bancaria de Valores (CNVB)
 - [ ] Cualquier base de datos relevante que ayude a explicar el crecimiento de entidades en México, siempre y cuando el origen sea abierto y público
+
+## Tecnologias a utilizar
+- [x] Python / R
+- [x] PostgreSQL: Se espera que los datos estén almacenados en una BD PostgreSQL.
+- [ ] Un modelo de Machine Learning o Modelo Estadístico (en Python o R)
+- [ ] Una web app en Azure (Stack libre con excepción de DB) que utilice una DB PostgreSQL y el modelo de Machine Learning anterior.
