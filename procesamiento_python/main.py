@@ -40,6 +40,7 @@ if __name__ == "__main__":
     poblacion_2018_2019 = []
     patentes_2010_2018 = []
     unidades_economicas_2013_2018 = []
+    turistas_2010_2018 = []
 
     #Utilidades
     scanner = CsvScannerINEGI()
@@ -72,7 +73,7 @@ if __name__ == "__main__":
     poblacion_2018_2019 = scanner.leer_poblacion_2018('conapo_data/pob_ini_proyecciones.csv')
     '''
         Patentes registradas por entidad federativa 2015 - 2018
-        Datos: @conapo
+        Datos: @impi
     '''
     patentes_2010_2018 = scanner.leer_patentes_2010_2018('impi_data/patentes.csv')
     '''
@@ -80,13 +81,19 @@ if __name__ == "__main__":
         Datos: @denue
     '''
     unidades_economicas_2013_2018 = scanner.leer_unidades_economicas_2013_2018('inegi_data/neg_entidades/negocios.csv')
+    '''
+        Turistas registrados en cada entidad federativa 2010 - 2018
+        Datos: @sectur
+    '''
+    turistas_2010_2018 = scanner.leer_turistas_2010_2018('sectur_data/turismo_entidades.csv')
 
     #controladores
     controlador.controlador_poblacion_2010(database, poblacion_2010)
     #controlador.controlador_poblacion_2010_2017(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017)
     #controlador.controlador_poblacion_2018_2019(database, poblacion_2018_2019)
     #controlador.controlador_patentes_2010_2018(database, patentes_2010_2018)
-    controlador.controlador_unidades_economicas_2013_2018(database, unidades_economicas_2013_2018)
+    #controlador.controlador_unidades_economicas_2013_2018(database, unidades_economicas_2013_2018)
+    controlador.controlador_turistas_2010_2018(database, turistas_2010_2018)
 
     '''
         Datos genericos (Por default minados)

@@ -79,4 +79,19 @@ class ControladorDatos:
             unidades_economicas_2013_2018_final.append({"2013": unidades_economicas_2013_2018[x][1], "2014": unidades_economicas_2013_2018[x][2], "2015": unidades_economicas_2013_2018[x][3], "2016":unidades_economicas_2013_2018[x][4], "2017": unidades_economicas_2013_2018[x][5], "2018":unidades_economicas_2013_2018[x][6]})
 
         print("[✔] Procesamiento de las unidades economicas del 2013 hasta el 2018")
-        database.insertar_controlador_unidades_economicas_2013_2018(unidades_economicas_2013_2018_final)
+        database.insertar_unidades_economicas_2013_2018(unidades_economicas_2013_2018_final)
+
+    def controlador_turistas_2010_2018(self, database, turistas_2010_2018):
+        turistas_2010_2018_final = []
+
+        for x in range(0, 32):
+
+            for y in range(0, 10):
+                turistas_2010_2018[x][y] = turistas_2010_2018[x][y].replace(",","")         
+                turistas_2010_2018[x][y] = turistas_2010_2018[x][y].replace('"',"")
+                turistas_2010_2018[x][y] = turistas_2010_2018[x][y].replace('\n',"")
+            
+            turistas_2010_2018_final.append({"2010": turistas_2010_2018[x][1], "2011": turistas_2010_2018[x][2], "2012": turistas_2010_2018[x][3],"2013": turistas_2010_2018[x][4],"2014": turistas_2010_2018[x][5],"2015": turistas_2010_2018[x][6], "2016": turistas_2010_2018[x][7],"20107": turistas_2010_2018[x][8],"2018": turistas_2010_2018[x][9]})
+        
+        print("[✔] Procesamiento de los turitas por entidad federativa del 2010 hasta el 2018")
+        database.insertar_turistas_2010_2018(turistas_2010_2018_final)

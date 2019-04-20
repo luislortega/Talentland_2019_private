@@ -96,4 +96,16 @@ class CsvScannerINEGI:
                     unidades_economicas_2013_2018.append(row.split(',"'))
 
         print("[✔] Unidades economicas por entidad federativa 2013 - 2018. Fuente: DENUE")
-        return unidades_economicas_2013_2018        
+        return unidades_economicas_2013_2018    
+
+    def leer_turistas_2010_2018(self, filename):
+        turistas_2010_2018 = []
+
+        with open(filename, 'r') as csvfile:
+            csvFileReader = csv.reader(csvfile)
+            for i, row in enumerate(csvfile):
+                if i >= 1:
+                    turistas_2010_2018.append(row.split(',"'))
+
+        print("[✔] Turistas por entidad federativa 2010 - 2018. Fuente: SECTUR")
+        return turistas_2010_2018
