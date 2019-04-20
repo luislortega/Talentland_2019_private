@@ -86,14 +86,21 @@ if __name__ == "__main__":
         Datos: @sectur
     '''
     turistas_2010_2018 = scanner.leer_turistas_2010_2018('sectur_data/turismo_entidades.csv')
-
+    '''
+        PIB de Mexico 2010 - 2018
+        Datos: @inegi
+    '''
+    '''
+        PIB por entidad federativa 2010 - 2017
+        Datos: @inegi
+    '''
     #controladores
     controlador.controlador_poblacion_2010(database, poblacion_2010)
     #controlador.controlador_poblacion_2010_2017(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017)
     #controlador.controlador_poblacion_2018_2019(database, poblacion_2018_2019)
     #controlador.controlador_patentes_2010_2018(database, patentes_2010_2018)
     #controlador.controlador_unidades_economicas_2013_2018(database, unidades_economicas_2013_2018)
-    controlador.controlador_turistas_2010_2018(database, turistas_2010_2018)
+    #controlador.controlador_turistas_2010_2018(database, turistas_2010_2018)
 
     '''
         Datos genericos (Por default minados)

@@ -59,4 +59,7 @@ class ConexionDB:
         print("[✔] Unidades economicas del 2013 hasta el 2018 insertadas en la base de datos")
     
     def insertar_turistas_2010_2018(self, turistas_2010_2018):
-        print("[DEV] Turistas por entidad federativa del 2010 hasta el 2018 insertadas en la base de datos")
+        for x in range(1, 33):
+            update_command = "UPDATE entidad_federativa SET turismo='"+json.dumps(turistas_2010_2018[x-1])+"' where id="+str(x)
+            self.cursor.execute(update_command)
+        print("[✔] Turistas por entidad federativa del 2010 hasta el 2018 insertadas en la base de datos")
