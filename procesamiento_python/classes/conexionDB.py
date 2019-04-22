@@ -14,7 +14,7 @@ class ConexionDB:
     def crear_tablas_postgres(self):
         create_table_command = "CREATE TABLE entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), lat varchar, long varchar, actividades_economicas JSON, poblacion JSON, patentes JSON, unidades_economicas JSON, turismo JSON)"
         self.cursor.execute(create_table_command)
-        create_table_command = "CREATE TABLE mexico(id serial PRIMARY KEY, poblacion_total bigint, pib JSON)"
+        create_table_command = "CREATE TABLE mexico(id serial PRIMARY KEY, poblacion_total JSON, pib JSON)"
         self.cursor.execute(create_table_command)
         print("[✔] Tablas de la bse de datos creadas")
 
@@ -68,3 +68,8 @@ class ConexionDB:
         insert_command = "INSERT INTO mexico(pib) values('"+json.dumps(pib_mexico_2010_2018)+"')"
         self.cursor.execute(insert_command)
         print("[✔] Pib total de Mexico por año del 2010 hasta el 2018 insertado en la base de datos")
+
+    def insertar_poblacion_mexico_2010_2018(self, poblacion_mexico_2010_2018):
+        update_command = "UPDATE mexico SET poblacion_total='"+json.dumps(poblacion_mexico_2010_2018)+"'"
+        self.cursor.execute(update_command)
+        print("[✔] Poblacion total de Mexico por año del 2010 hasta el 2018 insertado en la base de datos")

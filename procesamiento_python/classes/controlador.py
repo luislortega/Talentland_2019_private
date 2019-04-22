@@ -95,6 +95,7 @@ class ControladorDatos:
         database.insertar_pib_mexico_2010_2018(pib_mexico_1993_2018_final)
 
     def controlador_poblacion_mexico_2010_2018(self, database, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017, poblacion_2018_2019):
+        poblacion_mexico_2010_2018 = []
         poblacion_2018_ordenada = []
         poblacion_2019_ordenada = []
         poblacion_2018_2019_final = []
@@ -129,9 +130,7 @@ class ControladorDatos:
         for x in range(0, 32):
             lista_final[x] = {**lista_final[x], **no_lista_poblacion[x],**no_lista_poblacion[x+32], **no_lista_poblacion[x+64], **no_lista_poblacion[x+96], **no_lista_poblacion[x+128], **no_lista_poblacion[x+160], **no_lista_poblacion[x+192]}
         
-        #print(lista_final[0]["2010"])
-        print(poblacion_2018_2019_final)
-        # SACAR EL CALCULO DE LA POBLACION TOTAL.
+        # CALCULO DE LA POBLACION TOTAL.
         for x in range(0, 32):
             lista_final[x] = {**lista_final[x], **poblacion_2018_2019_final[x]}
         
@@ -139,6 +138,7 @@ class ControladorDatos:
             sumatoria = 0
             for y in range(0, 32):
                 sumatoria += int(lista_final[y][str(x)]) 
-            print(sumatoria)
+            poblacion_mexico_2010_2018.append({str(x):str(sumatoria-1640000)})
             
-        print("[DEV] Procesamiento de la poblacion total de Mexico 2010 - 2018 minados. Fuente: INEGI y CONAPO")
+        print("[✔] Procesamiento de la poblacion total de Mexico 2010 - 2018 minados. Fuente: INEGI y CONAPO")
+        database.insertar_poblacion_mexico_2010_2018(poblacion_mexico_2010_2018)
