@@ -100,6 +100,14 @@ if __name__ == "__main__":
         Indicador Trimestral de Actividad Económica Estatal 2010 T1 - 2018 T3
         Datos: @ITAEE
     '''
+    '''
+        Exportaciones de mexico por entidad federativa 2010 - 2018 
+        Datos: @ADUANA
+    '''
+    '''
+        Gastos en consumo de electricidad por entidad federativa 2010 - 2018 
+        Datos: @CFE
+    '''
     #controladores
     controlador.controlador_poblacion_2010(database, poblacion_2010)
     #controlador.controlador_poblacion_2010_2017(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017)

@@ -102,6 +102,7 @@ class ControladorDatos:
         lista_poblacion_2010 = []
         no_lista_poblacion = []
         lista_final = []
+        
         contador_entidad = 1
 
         # POBLACION 2018 - 2019
@@ -138,7 +139,10 @@ class ControladorDatos:
             sumatoria = 0
             for y in range(0, 32):
                 sumatoria += int(lista_final[y][str(x)]) 
-            poblacion_mexico_2010_2018.append({str(x):str(sumatoria-1640000)})
-            
+            if x != 2010:
+                poblacion_mexico_2010_2018.append({str(x):str(sumatoria-1640000)})
+            else:
+                poblacion_mexico_2010_2018.append({str(x):str(sumatoria)})
+                
         print("[✔] Procesamiento de la poblacion total de Mexico 2010 - 2018 minados. Fuente: INEGI y CONAPO")
         database.insertar_poblacion_mexico_2010_2018(poblacion_mexico_2010_2018)
