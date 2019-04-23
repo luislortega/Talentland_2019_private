@@ -42,8 +42,8 @@ Puede ser del 2014 a la fecha
 ## Tecnologias a utilizar
 - [x] Python / R
 - [x] PostgreSQL: Se espera que los datos estén almacenados en una BD PostgreSQL.
-- [ ] Un modelo de Machine Learning o Modelo Estadístico (en Python o R)
-- [ ] Una web app en Azure (Stack libre con excepción de DB) que utilice una DB PostgreSQL y el modelo de Machine Learning anterior.
+- [x] Un modelo de Machine Learning o Modelo Estadístico (en Python o R)
+- [x] Una web app en Azure (Stack libre con excepción de DB) que utilice una DB PostgreSQL y el modelo de Machine Learning anterior.
 
 ## Evaluacion de documento
 
@@ -84,14 +84,14 @@ Puede ser del 2014 a la fecha
 plataformas
 
 **Integracion**
-- [ ] Alcances de la integración
+- [x] Alcances de la integración
 - Grado de avance previo al Hackathón
 - Grado de avance durante el Hackathón
 - Grado de culminación de acuerdo a las fases
 - Alcances de acuerdo al diseño de la experiencia
 - Grado de uso de las tecnologías solicitados
 - Inclusión de otras tecnologías no solicitadas
-- [ ] Calidad de la implementación
+- [x] Calidad de la implementación
 - Rigor tecnológico y metodológico
 - Estabilidad de la solución implementada
 - Implementación apegada a mejores prácticas
