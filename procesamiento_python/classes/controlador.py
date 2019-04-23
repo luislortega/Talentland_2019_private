@@ -94,7 +94,7 @@ class ControladorDatos:
         print("[✔] Procesamiento del pib total en mexico desde 1993 hasta el 2018")
         database.insertar_pib_mexico_2010_2018(pib_mexico_1993_2018_final)
 
-    def controlador_poblacion_mexico_2010_2018(self, database, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017, poblacion_2018_2019):
+    def controlador_poblacion_mexico_2010_2019(self, database, poblacion_2010, natalidad_2011_2017, mortalidad_2011_2017, poblacion_2018_2019):
         poblacion_mexico_2010_2018 = []
         poblacion_2018_ordenada = []
         poblacion_2019_ordenada = []
@@ -143,6 +143,6 @@ class ControladorDatos:
                 poblacion_mexico_2010_2018.append({str(x):str(sumatoria-1640000)})
             else:
                 poblacion_mexico_2010_2018.append({str(x):str(sumatoria)})
-                
+
         print("[✔] Procesamiento de la poblacion total de Mexico 2010 - 2018 minados. Fuente: INEGI y CONAPO")
         database.insertar_poblacion_mexico_2010_2018(poblacion_mexico_2010_2018)

@@ -44,7 +44,7 @@ if __name__ == "__main__":
     pib_mexico_1993_2018 = []
     
     #Utilidades
-    scanner = CsvScannerINEGI()
+    scanner = CsvScanner()
     database = ConexionDB()
     controlador = ControladorDatos()
 
@@ -105,9 +105,14 @@ if __name__ == "__main__":
         Datos: @ADUANA
     '''
     '''
-        Gastos en consumo de electricidad por entidad federativa 2010 - 2018 
+        Gastos en consumo de electricidad por municipio 2010 - 2018 
         Datos: @CFE
     '''
+    '''
+        Transacciones bancarias por municipio en cajeros automaticos 2010 - 2018 
+        Datos: @CNBV
+    '''
+
     #controladores
     controlador.controlador_poblacion_2010(database, poblacion_2010)
     #controlador.controlador_poblacion_2010_2017(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017)
@@ -116,7 +121,7 @@ if __name__ == "__main__":
     #controlador.controlador_unidades_economicas_2013_2018(database, unidades_economicas_2013_2018)
     #controlador.controlador_turistas_2010_2018(database, turistas_2010_2018)
     controlador.controlador_pib_mexico_1993_2018(database, pib_mexico_1993_2018)
-    controlador.controlador_poblacion_mexico_2010_2018(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017, poblacion_2018_2019)
+    #controlador.controlador_poblacion_mexico_2010_2019(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017, poblacion_2018_2019)
 
     '''
         Datos genericos (Por default minados)

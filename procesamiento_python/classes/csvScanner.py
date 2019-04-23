@@ -1,6 +1,6 @@
 import csv
 
-class CsvScannerINEGI:
+class CsvScanner:
     # Extrae los datos minados de inegi sobre la poblacion 2010
     def leer_poblacion_2010(self, filename):
         datos = []
