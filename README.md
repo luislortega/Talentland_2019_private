@@ -34,7 +34,7 @@ Puede ser del 2014 a la fecha
 - [x] Indicadores poblacionales por ciudad/entidad federativa
 - [x] Indicadores económicos por ciudad/entidad federativa (Nivel – Socioeconómico, PIB percápita, gasto en consumo, etc)
 - [x] Datos abiertos gubernamentales ( https://datos.gob.mx/ )
-- [ ] Cualquier base de datos relevante que ayude a explicar el crecimiento de entidades en México
+- [x] Cualquier base de datos relevante que ayude a explicar el crecimiento de entidades en México
 - [x] Consejo Nacional de Población  https://www.gob.mx/conapo
 - [x] Información transaccional de la Comisión Nacional Bancaria de Valores (CNVB)
 - [x] Cualquier base de datos relevante que ayude a explicar el crecimiento de entidades en México, siempre y cuando el origen sea abierto y público
@@ -42,7 +42,7 @@ Puede ser del 2014 a la fecha
 ## Tecnologias a utilizar
 - [x] Python / R
 - [x] PostgreSQL: Se espera que los datos estén almacenados en una BD PostgreSQL.
-- [x] Un modelo de Machine Learning o Modelo Estadístico (en Python o R)
+- [ ] Un modelo de Machine Learning o Modelo Estadístico (en Python o R)
 - [ ] Una web app en Azure (Stack libre con excepción de DB) que utilice una DB PostgreSQL y el modelo de Machine Learning anterior.
 
 ## Evaluacion de documento
@@ -65,20 +65,37 @@ Puede ser del 2014 a la fecha
 -  Viabilidad del impacto
 
 **Experiencia de usuario**
-- [ ] Funcionalidad
+- [x] Funcionalidad
 - Funcionalidad a partir de diagramas funcionales
 - Funcionalidad a partir de Video o bocetos demostrativos en su caso
 - Descripción del perfil de usuarios
 - Facilidad de uso
-- [ ] Arquitectura tecnológica
+- [x] Arquitectura tecnológica
 - Plataformas tecnológicas a utilizar
 - Mayor limitante tecnológica y su estrategia de solución
 - Originalidad de la integración tecnológica
 - Metodologías de desarrollo a utilizar
 - Complejidad de los diseño
-- [ ]  Valores agregados
+- [x] Valores agregados
 - Portabilidad
 - Conectividad
 - Seguridad
 - Interacción e integración con otras tecnologías, aplicaciones o
 plataformas
+
+**Integracion**
+- [ ] Alcances de la integración
+- Grado de avance previo al Hackathón
+- Grado de avance durante el Hackathón
+- Grado de culminación de acuerdo a las fases
+- Alcances de acuerdo al diseño de la experiencia
+- Grado de uso de las tecnologías solicitados
+- Inclusión de otras tecnologías no solicitadas
+- [ ] Calidad de la implementación
+- Rigor tecnológico y metodológico
+- Estabilidad de la solución implementada
+- Implementación apegada a mejores prácticas
+- Calidad de código en su caso
+- Funcionalidad del prototipo o avance de la solución
+- Resultado de las pruebas de usabilidad o concepto en su caso
+- Integridad de los componentes tecnológicos
