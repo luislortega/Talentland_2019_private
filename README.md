@@ -44,3 +44,39 @@ Puede ser del 2014 a la fecha
 - [x] PostgreSQL: Se espera que los datos estén almacenados en una BD PostgreSQL.
 - [x] Un modelo de Machine Learning o Modelo Estadístico (en Python o R)
 - [ ] Una web app en Azure (Stack libre con excepción de DB) que utilice una DB PostgreSQL y el modelo de Machine Learning anterior.
+
+## Evaluacion de documento
+**Solucion general**
+- [x] Presentación
+-  Coherencia de la solución con el reto planteado
+-  Claridad de la solución
+-  Calidad y organización de los diagramas de la solución
+-  Alcance de la solución en usuarios potenciales
+-  Sustento de la solución
+- [x] Capacidad Tecnológica
+- Complejidad técnica
+-  Viabilidad técnica
+-  Capacidad del equipo de trabajo
+-  Limitantes de la solución
+- [x] Originalidad e impacto
+-  Creatividad y grado de innovación de la solución
+-  Nivel de escala del impacto
+-  Viabilidad del impacto
+**Experiencia de usuario**
+2.1 Funcionalidad
+1. Funcionalidad a partir de diagramas funcionales
+2. Funcionalidad a partir de Video o bocetos demostrativos en su caso
+3. Descripción del perfil de usuarios
+4. Facilidad de uso
+2.2 Arquitectura tecnológica
+1. Plataformas tecnológicas a utilizar
+2. Mayor limitante tecnológica y su estrategia de solución
+3. Originalidad de la integración tecnológica
+4. Metodologías de desarrollo a utilizar
+5. Complejidad de los diseño
+2.3 Valores agregados
+1. Portabilidad
+2. Conectividad
+3. Seguridad
+4. Interacción e integración con otras tecnologías, aplicaciones o
+plataformas
