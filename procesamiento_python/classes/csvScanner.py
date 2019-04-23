@@ -103,3 +103,8 @@ class CsvScanner:
                 pib_mexico_1993_2018.append(row.split(","))
         print("[✔] PIB de Mexico 1993 - 2018 minados. Fuente: INEGI")
         return pib_mexico_1993_2018
+
+    def leer_pib_entidades_2010_2017(self, filenames):
+        print(filenames)
+       
+        print("[DEV] PIB por entidades 2010 - 2017 minados. Fuente: INEGI")

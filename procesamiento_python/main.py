@@ -29,7 +29,7 @@ Crecimiento economico:
     - valor agregado bruto por empresa
 '''
 from classes.conexionDB import ConexionDB
-from classes.csvScanner import CsvScannerINEGI
+from classes.csvScanner import CsvScanner
 from classes.controlador import ControladorDatos
 
 if __name__ == "__main__":
@@ -42,6 +42,7 @@ if __name__ == "__main__":
     unidades_economicas_2013_2018 = []
     turistas_2010_2018 = []
     pib_mexico_1993_2018 = []
+    pib_entidades_2010_2017 = []
     
     #Utilidades
     scanner = CsvScanner()
@@ -93,9 +94,27 @@ if __name__ == "__main__":
     '''
     pib_mexico_1993_2018 = scanner.leer_pib_mexico_1993_2018('inegi_data/pib_mexico/pib_mexico.csv')
     '''
-        PIB por entidad federativa 2010 - 2017
+        PIB por entidad federativa y actividad economica 2010 - 2017
         Datos: @inegi
     '''
+    pib_entidades_2010_2017 = scanner.leer_pib_entidades_2010_2017(
+        ['inegi_data/pib_entidades/pibe_entidad_ags.csv','inegi_data/pib_entidades/pibe_entidad_bc.csv',
+        'inegi_data/pib_entidades/pibe_entidad_bcs.csv', 'inegi_data/pib_entidades/pibe_entidad_camp.csv',
+        'inegi_data/pib_entidades/pibe_entidad_cdmx.csv', 'inegi_data/pib_entidades/pibe_entidad_chih.csv',
+        'inegi_data/pib_entidades/pibe_entidad_chis.csv', 'inegi_data/pib_entidades/pibe_entidad_coah.csv',
+        'inegi_data/pib_entidades/pibe_entidad_col.csv', 'inegi_data/pib_entidades/pibe_entidad_dgo.csv',
+        'inegi_data/pib_entidades/pibe_entidad_gro.csv', 'inegi_data/pib_entidades/pibe_entidad_gto.csv',
+        'inegi_data/pib_entidades/pibe_entidad_hgo.csv', 'inegi_data/pib_entidades/pibe_entidad_jal.csv',
+        'inegi_data/pib_entidades/pibe_entidad_mex.csv', 'inegi_data/pib_entidades/pibe_entidad_mich.csv',
+        'inegi_data/pib_entidades/pibe_entidad_mor.csv', 'inegi_data/pib_entidades/pibe_entidad_nac.csv',
+        'inegi_data/pib_entidades/pibe_entidad_nay.csv', 'inegi_data/pib_entidades/pibe_entidad_nl.csv',
+        'inegi_data/pib_entidades/pibe_entidad_oax.csv', 'inegi_data/pib_entidades/pibe_entidad_pue.csv',
+        'inegi_data/pib_entidades/pibe_entidad_qr.csv', 'inegi_data/pib_entidades/pibe_entidad_qro.csv',
+        'inegi_data/pib_entidades/pibe_entidad_sin.csv', 'inegi_data/pib_entidades/pibe_entidad_slp.csv',
+        'inegi_data/pib_entidades/pibe_entidad_son.csv', 'inegi_data/pib_entidades/pibe_entidad_tab.csv',
+        'inegi_data/pib_entidades/pibe_entidad_tamps.csv', 'inegi_data/pib_entidades/pibe_entidad_tlax.csv',
+        'inegi_data/pib_entidades/pibe_entidad_ver.csv', 'inegi_data/pib_entidades/pibe_entidad_yuc.csv',
+        'inegi_data/pib_entidades/pibe_entidad_zac.csv'])
     '''
         Indicador Trimestral de Actividad Económica Estatal 2010 T1 - 2018 T3
         Datos: @ITAEE
