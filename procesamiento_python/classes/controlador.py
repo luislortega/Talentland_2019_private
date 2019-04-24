@@ -156,25 +156,18 @@ class ControladorDatos:
 
         for entidad in exportaciones_entidades_2010_2017_lista:
             print("Cambio de entidad")
-            print()
             contador = 0
             contador_anual = 2011
             valores_anual = {"2010": str(int(entidad[0])+int(entidad[1])+int(entidad[2])+int(entidad[3])) }
-
             for x in range(0, 36):
                 if contador == 4:
-
-                    valor = {str(contador_anual):"1"}
+                    valor = {str(contador_anual):str(int(entidad[x])+int(entidad[x+1]) + int(entidad[x+2])+int(entidad[x+3]))}
                     valores_anual = {**valores_anual, **valor}
-
-                    print("V1:"+str(entidad[x])+ " v2: "+str(entidad[x+1]) + " v3: "+str(entidad[x+2])+ " v4:"+str(entidad[x+3]))                    
                     contador = 0
                     contador_anual += 1
-                
                 contador += 1
             print(valores_anual)
             
-
         #print(exportaciones_entidades_2010_2017)
         #print(exportaciones_entidades_2010_2017_lista)
         print("[dev] Procesamiento de las exportaciones en entidades federativas del 2010 hasta el 2017")
