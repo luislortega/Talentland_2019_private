@@ -8,6 +8,7 @@ Condiciones:
 2010 - Actualidad
 '''
 import csv
+import re
 
 class CsvScanner:
     # Extrae los datos minados de inegi sobre la poblacion 2010
@@ -116,11 +117,47 @@ class CsvScanner:
     # EN DESARROLLO
     def leer_pib_entidades_2010_2017(self, filenames):
         for entidad in filenames:
+
+
+            pib_entidades_2010_2017 = []
+
             with open(entidad, encoding="utf8") as csvfile:
                 csvFileReader = csv.reader(csvfile)
                 for i, row in enumerate(csvfile):
-                    print(row)
-       
+
+                    datos_limpio = row.split(",")
+                    condicion_comun = datos_limpio[0].split("|")
+                    titulo = condicion_comun[4: len(condicion_comun)]
+                    titulo_str = str(titulo)
+                    vector_titulo = titulo_str.split(",")
+
+                    if len(condicion_comun) > 4:
+                        if len(vector_titulo) > 1:
+                            titulo_str = str(vector_titulo[1])
+                        #Caracteres especiales
+                        titulo_str = titulo_str.replace("[","")
+                        titulo_str = titulo_str.replace("'","")
+                        titulo_str = titulo_str.replace("<C1>","")
+                        titulo_str = titulo_str.replace("]","")
+                        titulo_str = titulo_str.replace("-","")
+                        titulo_str = ''.join([i for i in titulo_str if not i.isdigit()])
+                        datos_limpio[0] = titulo_str
+                        contador = 0
+                        for elemento in datos_limpio:
+                            print(elemento)
+                            if contador != 0:
+                                try:
+                                    float(elemento)
+                                except ValueError:
+                                    print("Isnot afloat")
+                            contador += 1
+                        print(datos_limpio)
+
+                    if i == 38:
+                        break # rompe hasta los datos que queremos
+
+            break #ROMPE PARA SOLO MOSTRAR UNO
+            
         print("[DEV] PIB por entidades 2010 - 2017 minados. Fuente: INEGI")
 
     def leer_exportaciones_entidades_2010_2018(self, filename):
