@@ -144,5 +144,15 @@ class ControladorDatos:
             else:
                 poblacion_mexico_2010_2018.append({str(x):str(sumatoria)})
 
-        print("[✔] Procesamiento de la poblacion total de Mexico 2010 - 2018 minados. Fuente: INEGI y CONAPO")
+        print("[✔] Procesamiento de la poblacion total de Mexico 2010 - 2018")
         database.insertar_poblacion_mexico_2010_2018(poblacion_mexico_2010_2018)
+
+    def controlador_exportaciones_entidades_2010_2017(self, database, exportaciones_entidades_2010_2017):
+        exportaciones_entidades_2010_2017_lista = []
+        for entidad in exportaciones_entidades_2010_2017:
+            exportaciones_entidades_2010_2017_lista.append(entidad[1:len(entidad)])
+
+            
+        #print(exportaciones_entidades_2010_2017)
+        print(exportaciones_entidades_2010_2017_lista)
+        print("[dev] Procesamiento de las exportaciones en entidades federativas del 2010 hasta el 2017")

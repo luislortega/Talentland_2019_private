@@ -108,8 +108,21 @@ class CsvScanner:
         for entidad in filenames:
             with open(entidad, encoding="utf8") as csvfile:
                 csvFileReader = csv.reader(csvfile)
-                for i, row in enumerate(csvfile):
-                    print(str(i))
-                    print(row)
+                #for i, row in enumerate(csvfile):
+                #print(str(i))
+                #print(row)
        
         print("[DEV] PIB por entidades 2010 - 2017 minados. Fuente: INEGI")
+
+    def leer_exportaciones_entidades_2010_2017(self, filename):
+        exportaciones_entidades_2010_2017 = []
+        with open(filename, 'r') as csvfile:
+            csvFileReader = csv.reader(csvfile)
+            for i, row in enumerate(csvfile):
+                if i >= 1:
+                    row = row.replace(" ","")
+                    row = row.replace("\n","")
+                    row = row.replace("'", "")
+                    exportaciones_entidades_2010_2017.append(row.split(","))
+        print("[✔] Exportaciones por entidades 2010 - 2017 minados. Fuente: INEGI")
+        return exportaciones_entidades_2010_2017
