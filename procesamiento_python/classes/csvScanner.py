@@ -114,8 +114,8 @@ class CsvScanner:
        
         print("[DEV] PIB por entidades 2010 - 2017 minados. Fuente: INEGI")
 
-    def leer_exportaciones_entidades_2010_2017(self, filename):
-        exportaciones_entidades_2010_2017 = []
+    def leer_exportaciones_entidades_2010_2018(self, filename):
+        exportaciones_entidades_2010_2018 = []
         with open(filename, 'r') as csvfile:
             csvFileReader = csv.reader(csvfile)
             for i, row in enumerate(csvfile):
@@ -123,6 +123,6 @@ class CsvScanner:
                     row = row.replace(" ","")
                     row = row.replace("\n","")
                     row = row.replace("'", "")
-                    exportaciones_entidades_2010_2017.append(row.split(","))
-        print("[✔] Exportaciones por entidades 2010 - 2017 minados. Fuente: INEGI")
-        return exportaciones_entidades_2010_2017
+                    exportaciones_entidades_2010_2018.append(row.split(","))
+        print("[✔] Exportaciones por entidades 2010 - 2018 minados. Fuente: INEGI")
+        return exportaciones_entidades_2010_2018

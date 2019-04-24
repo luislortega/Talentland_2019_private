@@ -147,15 +147,14 @@ class ControladorDatos:
         print("[✔] Procesamiento de la poblacion total de Mexico 2010 - 2018")
         database.insertar_poblacion_mexico_2010_2018(poblacion_mexico_2010_2018)
 
-    def controlador_exportaciones_entidades_2010_2017(self, database, exportaciones_entidades_2010_2017):
-        exportaciones_entidades_2010_2017_lista = []
-        exportaciones_entidades_2010_2017_final = []
+    def controlador_exportaciones_entidades_2010_2018(self, database, exportaciones_entidades_2010_2018):
+        exportaciones_entidades_2010_2018_lista = []
+        exportaciones_entidades_2010_2018_final = []
 
-        for entidad in exportaciones_entidades_2010_2017:
-            exportaciones_entidades_2010_2017_lista.append(entidad[1:len(entidad)])
+        for entidad in exportaciones_entidades_2010_2018:
+            exportaciones_entidades_2010_2018_lista.append(entidad[1:len(entidad)])
 
-        for entidad in exportaciones_entidades_2010_2017_lista:
-            print("Cambio de entidad")
+        for entidad in exportaciones_entidades_2010_2018_lista:
             contador = 0
             contador_anual = 2011
             valores_anual = {"2010": str(int(entidad[0])+int(entidad[1])+int(entidad[2])+int(entidad[3])) }
@@ -166,8 +165,7 @@ class ControladorDatos:
                     contador = 0
                     contador_anual += 1
                 contador += 1
-            print(valores_anual)
+            exportaciones_entidades_2010_2018_final.append(valores_anual)
             
-        #print(exportaciones_entidades_2010_2017)
-        #print(exportaciones_entidades_2010_2017_lista)
-        print("[dev] Procesamiento de las exportaciones en entidades federativas del 2010 hasta el 2017")
+        print("[✔] Procesamiento de las exportaciones en entidades federativas del 2010 hasta el 2018")
+        database.insertar_exportaciones_entidades_2010_2018(exportaciones_entidades_2010_2018_final)

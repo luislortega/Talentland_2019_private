@@ -43,7 +43,7 @@ if __name__ == "__main__":
     turistas_2010_2018 = []
     pib_mexico_1993_2018 = []
     pib_entidades_2010_2017 = []
-    exportaciones_entidades_2010_2017 = []
+    exportaciones_entidades_2010_2018 = []
 
     #Utilidades
     scanner = CsvScanner()
@@ -133,7 +133,7 @@ if __name__ == "__main__":
         Exportaciones de mexico por entidad federativa 2010 - 2018 
         Datos: @ADUANA
     '''
-    exportaciones_entidades_2010_2017 = scanner.leer_exportaciones_entidades_2010_2017('inegi_data/exp_entidades/exportaciones.csv')
+    exportaciones_entidades_2010_2018 = scanner.leer_exportaciones_entidades_2010_2018('inegi_data/exp_entidades/exportaciones.csv')
     '''
         Gastos en consumo de electricidad por municipio 2010 - 2018 
         Datos: @CFE
@@ -152,4 +152,8 @@ if __name__ == "__main__":
     #controlador.controlador_turistas_2010_2018(database, turistas_2010_2018)
     controlador.controlador_pib_mexico_1993_2018(database, pib_mexico_1993_2018)
     #controlador.controlador_poblacion_mexico_2010_2019(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017, poblacion_2018_2019)
-    controlador.controlador_exportaciones_entidades_2010_2017(database, exportaciones_entidades_2010_2017)
+    #controlador.controlador_exportaciones_entidades_2010_2018(database, exportaciones_entidades_2010_2018)
+    '''
+    NOTA:
+        Insertar unidades economicas de todo mexico 2010 - 2018 
+    '''
