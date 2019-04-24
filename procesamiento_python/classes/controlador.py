@@ -152,7 +152,18 @@ class ControladorDatos:
         for entidad in exportaciones_entidades_2010_2017:
             exportaciones_entidades_2010_2017_lista.append(entidad[1:len(entidad)])
 
-            
+        for entidad in exportaciones_entidades_2010_2017_lista:
+            contador = 0
+            for x in range(0, 36):
+
+                if contador == 4:
+                    contador = 0
+                    print("V1:"+str(entidad[x])+ " v2: "+str(entidad[x+1]) + " v3: "+str(entidad[x+2])+ " v4:"+str(entidad[x+3]))
+
+                print(entidad[x])
+
+                contador += 1
+
         #print(exportaciones_entidades_2010_2017)
-        print(exportaciones_entidades_2010_2017_lista)
+        #print(exportaciones_entidades_2010_2017_lista)
         print("[dev] Procesamiento de las exportaciones en entidades federativas del 2010 hasta el 2017")
