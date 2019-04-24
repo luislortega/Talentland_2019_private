@@ -58,50 +58,42 @@ if __name__ == "__main__":
         Poblacion 2010.
         Datos: @inegi
     '''
-    poblacion_2010 = scanner.leer_poblacion_2010(
-        'inegi_data/pob_entidades/Poblacion_01.csv')
+    poblacion_2010 = scanner.leer_poblacion_2010('inegi_data/pob_entidades/Poblacion_01.csv')
     '''
         Natalidad 2011 - 2017.
         Datos: @inegi
     '''
-    natalidad_2010_2017 = scanner.leer_natalidad_2010_2017(
-        'inegi_data/pob_entidades/Natalidad_01.csv')
+    natalidad_2010_2017 = scanner.leer_natalidad_2010_2017('inegi_data/pob_entidades/Natalidad_01.csv')
     '''
         Moratlidad 2011 - 2017.
         Datos: @inegi
     '''
-    mortalidad_2010_2017 = scanner.leer_mortalidad_2010_2017(
-        'inegi_data/pob_entidades/Mortalidad_01.csv')
+    mortalidad_2010_2017 = scanner.leer_mortalidad_2010_2017('inegi_data/pob_entidades/Mortalidad_01.csv')
     '''
         Proyecciones de poblacion 2018.
         Datos: @conapo
     '''
-    poblacion_2018_2019 = scanner.leer_poblacion_2018_2019(
-        'conapo_data/pob_ini_proyecciones.csv')
+    poblacion_2018_2019 = scanner.leer_poblacion_2018_2019('conapo_data/pob_ini_proyecciones.csv')
     '''
         Patentes registradas por entidad federativa 2015 - 2018
         Datos: @impi
     '''
-    patentes_2010_2018 = scanner.leer_patentes_2010_2018(
-        'impi_data/patentes.csv')
+    patentes_2010_2018 = scanner.leer_patentes_2010_2018('impi_data/patentes.csv')
     '''
         Unidades economicas registradas en cada entidad federativa 2013 - 2018
         Datos: @denue
     '''
-    unidades_economicas_2013_2018 = scanner.leer_unidades_economicas_2013_2018(
-        'inegi_data/neg_entidades/negocios.csv')
+    unidades_economicas_2013_2018 = scanner.leer_unidades_economicas_2013_2018('inegi_data/neg_entidades/negocios.csv')
     '''
         Turistas registrados en cada entidad federativa 2010 - 2018
         Datos: @sectur
     '''
-    turistas_2010_2018 = scanner.leer_turistas_2010_2018(
-        'sectur_data/turismo_entidades.csv')
+    turistas_2010_2018 = scanner.leer_turistas_2010_2018('sectur_data/turismo_entidades.csv')
     '''
         PIB de Mexico 2010 - 2018
         Datos: @inegi
     '''
-    pib_mexico_1993_2018 = scanner.leer_pib_mexico_1993_2018(
-        'inegi_data/pib_mexico/pib_mexico.csv')
+    pib_mexico_1993_2018 = scanner.leer_pib_mexico_1993_2018('inegi_data/pib_mexico/pib_mexico.csv')
     '''
         PIB por entidad federativa y actividad economica 2010 - 2017
         Datos: @inegi
@@ -126,7 +118,7 @@ if __name__ == "__main__":
           'inegi_data/pib_entidades/pibe_entidad_yuc.csv','inegi_data/pib_entidades/pibe_entidad_zac.csv']
           )
     '''
-        Indicador Trimestral de Actividad Económica Estatal 2010 T1 - 2018 T3
+        Indicador Trimestral de Actividad Económica Estatal 2010 - 2017
         Datos: @ITAEE
     '''
     '''
@@ -135,7 +127,11 @@ if __name__ == "__main__":
     '''
     exportaciones_entidades_2010_2018 = scanner.leer_exportaciones_entidades_2010_2018('inegi_data/exp_entidades/exportaciones.csv')
     '''
-        Gastos en consumo de electricidad por municipio 2010 - 2018 
+        Gastos en consumo de electricidad por municipio 2010 - 2017
+        Datos: @CFE
+    '''
+    '''
+        Gastos en consumo de electricidad por municipio 2018
         Datos: @CFE
     '''
     '''
@@ -156,4 +152,6 @@ if __name__ == "__main__":
     '''
     NOTA:
         Insertar unidades economicas de todo mexico 2010 - 2018 
+        Insertar exportaciones de todo emxico 2010 - 2018
+        Insetar actividad turistica en todo mexico 2010 - 2018
     '''
