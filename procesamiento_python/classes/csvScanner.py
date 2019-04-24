@@ -105,6 +105,11 @@ class CsvScanner:
         return pib_mexico_1993_2018
 
     def leer_pib_entidades_2010_2017(self, filenames):
-        print(filenames)
+        for entidad in filenames:
+            with open(entidad, encoding="utf8") as csvfile:
+                csvFileReader = csv.reader(csvfile)
+                for i, row in enumerate(csvfile):
+                    print(str(i))
+                    print(row)
        
         print("[DEV] PIB por entidades 2010 - 2017 minados. Fuente: INEGI")
