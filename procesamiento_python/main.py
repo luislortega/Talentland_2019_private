@@ -105,7 +105,6 @@ if __name__ == "__main__":
         PIB por entidad federativa y actividad economica 2010 - 2017
         Datos: @inegi
     '''
-    #TENEMOS UN INTRUSO AQUI
     pib_entidades_2010_2017 = scanner.leer_pib_entidades_2010_2017(
         ['inegi_data/pib_entidades/pibe_entidad_ags.csv', 'inegi_data/pib_entidades/pibe_entidad_bc.csv',
          'inegi_data/pib_entidades/pibe_entidad_bcs.csv', 'inegi_data/pib_entidades/pibe_entidad_camp.csv',
