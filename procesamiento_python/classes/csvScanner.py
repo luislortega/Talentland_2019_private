@@ -113,13 +113,13 @@ class CsvScanner:
         print("[✔] PIB de Mexico 1993 - 2018 minados. Fuente: INEGI")
         return pib_mexico_1993_2018
 
+    # EN DESARROLLO
     def leer_pib_entidades_2010_2017(self, filenames):
         for entidad in filenames:
             with open(entidad, encoding="utf8") as csvfile:
                 csvFileReader = csv.reader(csvfile)
-                #for i, row in enumerate(csvfile):
-                #print(str(i))
-                #print(row)
+                for i, row in enumerate(csvfile):
+                    print(row)
        
         print("[DEV] PIB por entidades 2010 - 2017 minados. Fuente: INEGI")
 
@@ -147,4 +147,3 @@ class CsvScanner:
         
         print("[✔] Promedio de los indicadores trimestrales por entidades 2010 - 2017 minados. Fuente: ITAEE/INEGI")
         return actividad_trimestral_2010_2017
-

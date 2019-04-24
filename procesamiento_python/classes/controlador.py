@@ -180,5 +180,22 @@ class ControladorDatos:
         database.insertar_exportaciones_entidades_2010_2018(exportaciones_entidades_2010_2018_final)
 
     def controlador_promedio_actividad_trimestral_2010_2017(self,database, promedio_actividad_trimestral_2010_2017):
-        print("[DEV] Procesamiento del promedio en el crecimiento de la actividad economicas en entidades federativas del 2010 hasta el 2018")
+        promedio_actividad_trimestral_2010_2017_final = []
+        for actividad in promedio_actividad_trimestral_2010_2017:
+            contador = 0
+            contador_anual = 2011
+            valores_anual = {"2010": str((float(actividad[0])+float(actividad[1])+float(actividad[2])+float(actividad[3]))/4)}
+
+            for x in range(0, 32):
+                if contador == 4:
+                    valor = {str(contador_anual):str((float(actividad[x])+float(actividad[x+1]) + float(actividad[x+2])+ float(actividad[x+3]))/4 )}
+                    valores_anual = {**valores_anual, **valor}
+                    contador = 0
+                    contador_anual += 1
+                contador += 1
+            promedio_actividad_trimestral_2010_2017_final.append(valores_anual)
+            
+        print("[✔] Procesamiento del promedio en el crecimiento de la actividad economicas en entidades federativas del 2010 hasta el 2018")
+        database.insertar_promedio_actividad_trimestral_2010_2017(promedio_actividad_trimestral_2010_2017_final)
+
         
