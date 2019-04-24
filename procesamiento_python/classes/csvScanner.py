@@ -136,5 +136,12 @@ class CsvScanner:
         print("[✔] Exportaciones por entidades 2010 - 2018 minados. Fuente: INEGI")
         return exportaciones_entidades_2010_2018
     
-    def leer_indicador_trimestral_2010_2017(self, filename):
-        print("[DEV] Indicadores trimestrales por entidades 2010 - 2017 minados. Fuente: ITAEE/INEGI")
+    def leer_promedio_actividad_trimestral_2010_2017(self, filename):
+        actividad_trimestral_2010_2017 = []
+        with open(filename, 'r') as csvfile:
+            csvFileReader = csv.reader(csvfile)
+            for i, row in enumerate(csvfile):
+                if i >= 1:
+                    actividad_trimestral_2010_2017.append(row.split(",")) #FALTAN LIMPIAR DATOS
+        print(actividad_trimestral_2010_2017)
+        print("[DEV] Promedio de los indicadores trimestrales por entidades 2010 - 2017 minados. Fuente: ITAEE/INEGI")

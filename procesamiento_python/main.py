@@ -22,7 +22,7 @@ if __name__ == "__main__":
     turistas_2010_2018 = []
     pib_mexico_1993_2018 = []
     pib_entidades_2010_2017 = []
-    indicador_trimestral_2010_2017 = []
+    promedio_actividad_trimestral_2010_2017 = [] #PROMEDIO
     exportaciones_entidades_2010_2018 = []
 
     #Utilidades
@@ -101,7 +101,7 @@ if __name__ == "__main__":
         Indicador Trimestral de Actividad Económica Estatal 2010 - 2017
         Datos: @ITAEE
     '''
-    indicador_trimestral_2010_2017 = scanner.leer_indicador_trimestral_2010_2017('itaee_data/itaee_indice.csv')
+    promedio_actividad_trimestral_2010_2017 = scanner.leer_promedio_actividad_trimestral_2010_2017('itaee_data/itaee_indice.csv')
     '''
         Exportaciones de mexico por entidad federativa 2010 - 2018 
         Datos: @ADUANA
