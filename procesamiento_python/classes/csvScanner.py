@@ -1,10 +1,19 @@
+'''
+@author: Monkey Coders
+@version: 1
+
+Este prototipo en Python con estandar MVC, filtra y procesa los datos para poder ser exportado a otras plataformas.
+
+Condiciones:
+2010 - Actualidad
+'''
 import csv
 
 class CsvScanner:
     # Extrae los datos minados de inegi sobre la poblacion 2010
     def leer_poblacion_2010(self, filename):
         datos = []
-        with open(filename, 'r') as csvfile:
+        with open(filename, encoding="utf8") as csvfile:
             csvFileReader = csv.reader(csvfile)
             for i, row in enumerate(csvfile):
                 if i >= 4:
@@ -126,3 +135,6 @@ class CsvScanner:
                     exportaciones_entidades_2010_2018.append(row.split(","))
         print("[✔] Exportaciones por entidades 2010 - 2018 minados. Fuente: INEGI")
         return exportaciones_entidades_2010_2018
+    
+    def leer_indicador_trimestral_2010_2017(self, filename):
+        print("[DEV] Indicadores trimestrales por entidades 2010 - 2017 minados. Fuente: ITAEE/INEGI")

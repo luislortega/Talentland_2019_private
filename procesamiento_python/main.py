@@ -6,27 +6,6 @@ Este prototipo en Python con estandar MVC, filtra y procesa los datos para poder
 
 Condiciones:
 2010 - Actualidad
-
-Mineria de datos.
-    inegi: https://www.inegi.org.mx/
-    conapo: https://datos.gob.mx/busca/dataset/proyecciones-de-la-poblacion-de-mexico-y-de-las-entidades-federativas-2016-2050/resource/a31f9dbb-4f65-47da-ba44-50eb44a9ad25
-    impi: https://datos.gob.mx/busca/dataset/informacion-estadistica-de-invenciones-signos-distintivos-y-proteccion-a-la-propiedad-intelectu
-    sectur: https://www.datatur.sectur.gob.mx
-
-Crecimiento poblacional:
-    1. Extraer la poblacion total por entidad federativa
-    2. Extraer la natalidad total por entidad federativa
-    3. Extraer la mortalidad total por entidad federativa
-    4. Calcular la natalidad 2010 hasta la actualidad (Angie)
-    5. Calcular la mortalidad 2010 hasta el actualidad (Angie)
-    6. Con los datos de mortalidad y natalidad calcular la poblacion total hasta 2018   
-    7. Sacar la prediccion de la poblacion 2019
-
-Crecimiento economico:
-    Factores del crecimiento economico:
-    - numero de empresas registradas
-    - numero de patentes registradas
-    - valor agregado bruto por empresa
 '''
 from classes.conexionDB import ConexionDB
 from classes.csvScanner import CsvScanner
@@ -43,6 +22,7 @@ if __name__ == "__main__":
     turistas_2010_2018 = []
     pib_mexico_1993_2018 = []
     pib_entidades_2010_2017 = []
+    indicador_trimestral_2010_2017 = []
     exportaciones_entidades_2010_2018 = []
 
     #Utilidades
@@ -121,6 +101,7 @@ if __name__ == "__main__":
         Indicador Trimestral de Actividad Económica Estatal 2010 - 2017
         Datos: @ITAEE
     '''
+    indicador_trimestral_2010_2017 = scanner.leer_indicador_trimestral_2010_2017('itaee_data/itaee_indice.csv')
     '''
         Exportaciones de mexico por entidad federativa 2010 - 2018 
         Datos: @ADUANA
