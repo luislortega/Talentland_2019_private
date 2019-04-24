@@ -142,6 +142,9 @@ class CsvScanner:
             csvFileReader = csv.reader(csvfile)
             for i, row in enumerate(csvfile):
                 if i >= 1:
-                    actividad_trimestral_2010_2017.append(row.split(",")) #FALTAN LIMPIAR DATOS
-        print(actividad_trimestral_2010_2017)
-        print("[DEV] Promedio de los indicadores trimestrales por entidades 2010 - 2017 minados. Fuente: ITAEE/INEGI")
+                    row = row.replace("\n", "")
+                    actividad_trimestral_2010_2017.append(row.split(",")[1: len(row)])
+        
+        print("[✔] Promedio de los indicadores trimestrales por entidades 2010 - 2017 minados. Fuente: ITAEE/INEGI")
+        return actividad_trimestral_2010_2017
+

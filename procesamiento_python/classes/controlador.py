@@ -178,3 +178,7 @@ class ControladorDatos:
             
         print("[✔] Procesamiento de las exportaciones en entidades federativas del 2010 hasta el 2018")
         database.insertar_exportaciones_entidades_2010_2018(exportaciones_entidades_2010_2018_final)
+
+    def controlador_promedio_actividad_trimestral_2010_2017(self,database, promedio_actividad_trimestral_2010_2017):
+        print("[DEV] Procesamiento del promedio en el crecimiento de la actividad economicas en entidades federativas del 2010 hasta el 2018")
+        
