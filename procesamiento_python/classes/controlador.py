@@ -194,8 +194,11 @@ class ControladorDatos:
                     contador_anual += 1
                 contador += 1
             promedio_actividad_trimestral_2010_2017_final.append(valores_anual)
-            
+
         print("[✔] Procesamiento del promedio en el crecimiento de la actividad economicas en entidades federativas del 2010 hasta el 2018")
         database.insertar_promedio_actividad_trimestral_2010_2017(promedio_actividad_trimestral_2010_2017_final)
-
+    
+    def controlador_actividades_economicas_entidades_2010_2017(self, database, actividades_economicas_entidades_2010_2017):
+        print(actividades_economicas_entidades_2010_2017[0][0])
+        print("[DEV] Procesamiento de las actividades economicas por entidad federativa 2010 - 2017")
         

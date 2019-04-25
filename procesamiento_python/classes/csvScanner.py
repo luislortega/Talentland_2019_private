@@ -114,27 +114,23 @@ class CsvScanner:
         print("[✔] PIB de Mexico 1993 - 2018 minados. Fuente: INEGI")
         return pib_mexico_1993_2018
 
-    # EN DESARROLLO
-    def leer_pib_entidades_2010_2017(self, filenames):
+    def leer_actividades_economicas_entidades_2010_2017(self, filenames):
+        valores_entidades_2010_2017 = []
         for entidad in filenames:
-
-
             pib_entidades_2010_2017 = []
-
             with open(entidad, encoding="utf8") as csvfile:
                 csvFileReader = csv.reader(csvfile)
                 for i, row in enumerate(csvfile):
-
                     datos_limpio = row.split(",")
                     condicion_comun = datos_limpio[0].split("|")
                     titulo = condicion_comun[4: len(condicion_comun)]
                     titulo_str = str(titulo)
                     vector_titulo = titulo_str.split(",")
-
+                    conjunto_de_datos = []
                     if len(condicion_comun) > 4:
                         if len(vector_titulo) > 1:
                             titulo_str = str(vector_titulo[1])
-                        #Caracteres especiales
+                        #Limpieza de caracteres especiales
                         titulo_str = titulo_str.replace("[","")
                         titulo_str = titulo_str.replace("'","")
                         titulo_str = titulo_str.replace("<C1>","")
@@ -143,22 +139,23 @@ class CsvScanner:
                         titulo_str = ''.join([i for i in titulo_str if not i.isdigit()])
                         datos_limpio[0] = titulo_str
                         contador = 0
+                        datos_ordenados = []
                         for elemento in datos_limpio:
-                            print(elemento)
                             if contador != 0:
                                 try:
                                     float(elemento)
+                                    datos_ordenados.append(elemento.replace("\n",""))
                                 except ValueError:
-                                    print("Isnot afloat")
+                                    continue
+                            else:
+                                datos_ordenados.append(elemento)
                             contador += 1
-                        print(datos_limpio)
-
+                        pib_entidades_2010_2017.append(datos_ordenados)
                     if i == 38:
                         break # rompe hasta los datos que queremos
-
-            break #ROMPE PARA SOLO MOSTRAR UNO
-            
-        print("[DEV] PIB por entidades 2010 - 2017 minados. Fuente: INEGI")
+                valores_entidades_2010_2017.append(pib_entidades_2010_2017)
+        print("[✔] PIB por entidades 2010 - 2017 minados. Fuente: INEGI")
+        return valores_entidades_2010_2017
 
     def leer_exportaciones_entidades_2010_2018(self, filename):
         exportaciones_entidades_2010_2018 = []

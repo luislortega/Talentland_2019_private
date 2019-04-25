@@ -21,7 +21,7 @@ if __name__ == "__main__":
     unidades_economicas_2013_2018 = []
     turistas_2010_2018 = []
     pib_mexico_1993_2018 = []
-    pib_entidades_2010_2017 = []
+    actividades_economicas_entidades_2010_2017 = []
     promedio_actividad_trimestral_2010_2017 = [] #PROMEDIO
     exportaciones_entidades_2010_2018 = []
 
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         Datos: @inegi
     '''
     #EN DESARROLLO Y MUY IMPORTANTE
-    pib_entidades_2010_2017 = scanner.leer_pib_entidades_2010_2017(
+    actividades_economicas_entidades_2010_2017 = scanner.leer_actividades_economicas_entidades_2010_2017(
         ['inegi_data/pib_entidades/pibe_entidad_ags.csv', 'inegi_data/pib_entidades/pibe_entidad_bc.csv',
          'inegi_data/pib_entidades/pibe_entidad_bcs.csv', 'inegi_data/pib_entidades/pibe_entidad_camp.csv',
          'inegi_data/pib_entidades/pibe_entidad_coah.csv', 'inegi_data/pib_entidades/pibe_entidad_col.csv',
@@ -131,6 +131,7 @@ if __name__ == "__main__":
     #controlador.controlador_poblacion_mexico_2010_2019(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017, poblacion_2018_2019)
     #controlador.controlador_exportaciones_entidades_2010_2018(database, exportaciones_entidades_2010_2018)
     #controlador.controlador_promedio_actividad_trimestral_2010_2017(database, promedio_actividad_trimestral_2010_2017)
+    controlador.controlador_actividades_economicas_entidades_2010_2017(database, actividades_economicas_entidades_2010_2017)
     '''
     NOTA:
         Insertar unidades economicas de todo mexico 2010 - 2018 
