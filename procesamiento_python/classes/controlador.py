@@ -111,9 +111,7 @@ class ControladorDatos:
         lista_poblacion_2010 = []
         no_lista_poblacion = []
         lista_final = []
-        
         contador_entidad = 1
-
         # POBLACION 2018 - 2019
         for x in range(0, 32):
             poblacion_2018_ordenada.append(0)
@@ -125,7 +123,6 @@ class ControladorDatos:
                 contador_entidad += 1
         for x in range(0, 32):
             poblacion_2018_2019_final.append({"2018": poblacion_2018_ordenada[x], "2019": poblacion_2019_ordenada[x]})
-
         # POBLACION 2010 - 2017
         for elemento_2010 in poblacion_2010:
             lista_final.append({"2010": elemento_2010[1]})
@@ -221,12 +218,50 @@ class ControladorDatos:
         database.insertar_actividades_economicas_entidades_2010_2017(valores_por_entidad)
 
     def controlador_consumo_electrico_municipios_2010_2017(self, database, consumo_electrico_2010_2017):
-        nombre_municipios = []
+        nombre_municipios = [] #LISTO
+        consumo_municipio = [] #DEV
         for municipio in consumo_electrico_2010_2017:
+
             if municipio.find("Total Estatal") == -1:
                 municipio = municipio.replace(" ","") 
                 municipio_coma = municipio.split(",")
                 municipio_separacion = municipio.split(',"')
-                nombre_municipios.append(municipio_coma[4])
+                
+                if len(municipio_separacion) == 9:
+                    nombre_municipios.append(municipio_coma[4])
+
+
+                    for i, municipio in enumerate(municipio_separacion):
+                        data = municipio.replace(",", "")
+                        data = data.replace('"',"")
+                        data = data.replace("\n","")
+                        municipio_separacion[i] = data
+                
+                    municipio_separacion = municipio_separacion[1:len(municipio_separacion)]
+
+                    anual = 2010
+                    valores_anuales = {}
+                    for x in range(0, 8):
+                        valor = {str(anual):str(municipio_separacion[x])}
+                        valores_anuales = {**valores_anuales, **valor}
+                        anual += 1
+
+                    print(valores_anuales)
+                    '''
+                    valores_anuales = {
+                        "2010":str(municipio_separacion[0]),
+                        "2011":str(municipio_separacion[1]),
+                        "2012":str(municipio_separacion[2]),
+                        "2013":str(municipio_separacion[3]),
+                        "2014":str(municipio_separacion[4]),
+                        "2015":str(municipio_separacion[5]),
+                        "2016":str(municipio_separacion[6]),
+                        "2017":str(municipio_separacion[7])
+                    }  
+                    '''  
+                #print(len(municipio_separacion))
+                #print(valores_anuales)
+                #Hacer un for que concetene los valores hasta el 2017
+        #print(nombre_municipios)
+                 
         print("[DEV] Procesamiento del consumo electrico con municipios 2010 - 2017")
-        
