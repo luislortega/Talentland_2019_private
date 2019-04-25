@@ -199,6 +199,24 @@ class ControladorDatos:
         database.insertar_promedio_actividad_trimestral_2010_2017(promedio_actividad_trimestral_2010_2017_final)
     
     def controlador_actividades_economicas_entidades_2010_2017(self, database, actividades_economicas_entidades_2010_2017):
-        print(actividades_economicas_entidades_2010_2017[0][0])
-        print("[DEV] Procesamiento de las actividades economicas por entidad federativa 2010 - 2017")
+        valores_por_entidad = []
+        for x in range(0, 32):
+            actividades_economicas_entidades = []
+            for array_actividad in actividades_economicas_entidades_2010_2017[x]:
+                valores = {
+                    array_actividad[0]: {
+                        "2010": array_actividad[8],
+                        "2011": array_actividad[9],
+                        "2012": array_actividad[10],
+                        "2013": array_actividad[11],
+                        "2014": array_actividad[12],
+                        "2015": array_actividad[13],
+                        "2016": array_actividad[14],
+                        "2017": array_actividad[15]
+                    }
+                }
+                actividades_economicas_entidades.append(valores)
+            valores_por_entidad.append(actividades_economicas_entidades)
+        print("[✔] Procesamiento de las actividades economicas por entidad federativa 2010 - 2017")
+        database.insertar_actividades_economicas_entidades_2010_2017(valores_por_entidad)
         
