@@ -25,7 +25,7 @@ class ConexionDB:
         self.cursor.execute(create_table_command)
         create_table_command = "CREATE TABLE entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), lat varchar, long varchar, exportaciones JSON, poblacion JSON, patentes JSON, unidades_economicas JSON, turismo JSON, actividad_economica_promedio JSON, actividades_economicas JSON)"
         self.cursor.execute(create_table_command)
-        create_table_command = "CREATE TABLE municipios(id serial PRIMARY KEY, consumo_cfe JSON, promedio_total_estatal varchar)"
+        create_table_command = "CREATE TABLE municipios(id serial PRIMARY KEY, lat varchar, long varchar, nombre varchar, consumo_cfe JSON, promedio_total_estatal varchar)"
         self.cursor.execute(create_table_command)
         print("[✔] Tablas de la bse de datos creadas")
 
@@ -105,3 +105,9 @@ class ConexionDB:
             update_command = "UPDATE entidad_federativa SET actividades_economicas='"+json.dumps(actividades_economicas_entidades_2010_2017[x-1])+"' where id="+str(x)
             self.cursor.execute(update_command)
         print("[✔] Promedio de la actividad economica trimestral por año de 2010 hasta el 2018 insertado en la base de datos")
+
+    def insertar_consumo_electrico_municipios_2010_2017(self, nombre_municipios, consumo_municipio):
+        for i, nombre in enumerate(nombre_municipios):
+            insert_command = "INSERT INTO municipios(nombre, consumo_cfe) VALUES ('"+str(nombre)+"','"+json.dumps(consumo_municipio[i])+"')"
+            self.cursor.execute(insert_command)
+        print("[✔] Consumo electrico por municipio en todo Mexico insertado en la base de datos")

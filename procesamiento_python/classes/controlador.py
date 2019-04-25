@@ -230,7 +230,6 @@ class ControladorDatos:
                 if len(municipio_separacion) == 9:
                     nombre_municipios.append(municipio_coma[4])
 
-
                     for i, municipio in enumerate(municipio_separacion):
                         data = municipio.replace(",", "")
                         data = data.replace('"',"")
@@ -246,22 +245,7 @@ class ControladorDatos:
                         valores_anuales = {**valores_anuales, **valor}
                         anual += 1
 
-                    print(valores_anuales)
-                    '''
-                    valores_anuales = {
-                        "2010":str(municipio_separacion[0]),
-                        "2011":str(municipio_separacion[1]),
-                        "2012":str(municipio_separacion[2]),
-                        "2013":str(municipio_separacion[3]),
-                        "2014":str(municipio_separacion[4]),
-                        "2015":str(municipio_separacion[5]),
-                        "2016":str(municipio_separacion[6]),
-                        "2017":str(municipio_separacion[7])
-                    }  
-                    '''  
-                #print(len(municipio_separacion))
-                #print(valores_anuales)
-                #Hacer un for que concetene los valores hasta el 2017
-        #print(nombre_municipios)
-                 
-        print("[DEV] Procesamiento del consumo electrico con municipios 2010 - 2017")
+                    consumo_municipio.append(valores_anuales)
+  
+        print("[✔] Procesamiento del consumo electrico con municipios 2010 - 2017")
+        database.insertar_consumo_electrico_municipios_2010_2017(nombre_municipios, consumo_municipio)
