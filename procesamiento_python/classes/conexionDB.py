@@ -21,9 +21,11 @@ class ConexionDB:
             print("[x] Error en la conexion")
 
     def crear_tablas_postgres(self):
+        create_table_command = "CREATE TABLE mexico(id serial PRIMARY KEY, poblacion_total JSON, pib JSON)"
+        self.cursor.execute(create_table_command)
         create_table_command = "CREATE TABLE entidad_federativa(id serial PRIMARY KEY, nombre_entidad varchar(100), lat varchar, long varchar, exportaciones JSON, poblacion JSON, patentes JSON, unidades_economicas JSON, turismo JSON, actividad_economica_promedio JSON, actividades_economicas JSON)"
         self.cursor.execute(create_table_command)
-        create_table_command = "CREATE TABLE mexico(id serial PRIMARY KEY, poblacion_total JSON, pib JSON)"
+        create_table_command = "CREATE TABLE municipios(id serial PRIMARY KEY, consumo_cfe JSON, promedio_total_estatal varchar)"
         self.cursor.execute(create_table_command)
         print("[✔] Tablas de la bse de datos creadas")
 

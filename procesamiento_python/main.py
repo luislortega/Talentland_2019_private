@@ -24,6 +24,7 @@ if __name__ == "__main__":
     actividades_economicas_entidades_2010_2017 = []
     promedio_actividad_trimestral_2010_2017 = [] #PROMEDIO
     exportaciones_entidades_2010_2018 = []
+    consumo_electrico_2010_2017 = []
 
     #Utilidades
     scanner = CsvScanner()
@@ -78,7 +79,6 @@ if __name__ == "__main__":
         PIB por entidad federativa y actividad economica 2010 - 2017
         Datos: @inegi
     '''
-    #EN DESARROLLO Y MUY IMPORTANTE
     actividades_economicas_entidades_2010_2017 = scanner.leer_actividades_economicas_entidades_2010_2017(
         ['inegi_data/pib_entidades/pibe_entidad_ags.csv', 'inegi_data/pib_entidades/pibe_entidad_bc.csv',
          'inegi_data/pib_entidades/pibe_entidad_bcs.csv', 'inegi_data/pib_entidades/pibe_entidad_camp.csv',
@@ -111,6 +111,7 @@ if __name__ == "__main__":
         Gastos en consumo de electricidad por municipio 2010 - 2017
         Datos: @CFE
     '''
+    consumo_electrico_2010_2017 = scanner.leer_consumo_electrico_2010_2017('cfe_data/consumo.csv')
     '''
         Gastos en consumo de electricidad por municipio 2018
         Datos: @CFE
@@ -129,9 +130,10 @@ if __name__ == "__main__":
     #controlador.controlador_turistas_2010_2018(database, turistas_2010_2018)
     controlador.controlador_pib_mexico_1993_2018(database, pib_mexico_1993_2018)
     #controlador.controlador_poblacion_mexico_2010_2019(database, poblacion_2010, natalidad_2010_2017, mortalidad_2010_2017, poblacion_2018_2019)
-    #controlador.controlador_exportaciones_entidades_2010_2018(database, exportaciones_entidades_2010_2018)
+    #controlador.controlador_actividades_economicas_entidades_2010_2017(database, actividades_economicas_entidades_2010_2017)
     #controlador.controlador_promedio_actividad_trimestral_2010_2017(database, promedio_actividad_trimestral_2010_2017)
-    controlador.controlador_actividades_economicas_entidades_2010_2017(database, actividades_economicas_entidades_2010_2017)
+    #controlador.controlador_exportaciones_entidades_2010_2018(database, exportaciones_entidades_2010_2018)
+
     '''
     NOTA:
         Insertar unidades economicas de todo mexico 2010 - 2018 
