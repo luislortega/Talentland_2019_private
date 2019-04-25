@@ -219,4 +219,14 @@ class ControladorDatos:
             valores_por_entidad.append(actividades_economicas_entidades)
         print("[✔] Procesamiento de las actividades economicas por entidad federativa 2010 - 2017")
         database.insertar_actividades_economicas_entidades_2010_2017(valores_por_entidad)
+
+    def controlador_consumo_electrico_municipios_2010_2017(self, database, consumo_electrico_2010_2017):
+        nombre_municipios = []
+        for municipio in consumo_electrico_2010_2017:
+            if municipio.find("Total Estatal") == -1:
+                municipio = municipio.replace(" ","") 
+                municipio_coma = municipio.split(",")
+                municipio_separacion = municipio.split(',"')
+                nombre_municipios.append(municipio_coma[4])
+        print("[DEV] Procesamiento del consumo electrico con municipios 2010 - 2017")
         

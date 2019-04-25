@@ -111,11 +111,7 @@ if __name__ == "__main__":
         Gastos en consumo de electricidad por municipio 2010 - 2017
         Datos: @CFE
     '''
-    consumo_electrico_2010_2017 = scanner.leer_consumo_electrico_2010_2017('cfe_data/consumo.csv')
-    '''
-        Gastos en consumo de electricidad por municipio 2018
-        Datos: @CFE
-    '''
+    consumo_electrico_2010_2017 = scanner.leer_consumo_electrico_municipios_2010_2017('cfe_data/consumo.csv')
     '''
         Transacciones bancarias por municipio en cajeros automaticos 2010 - 2018 
         Datos: @CNBV
@@ -133,7 +129,7 @@ if __name__ == "__main__":
     #controlador.controlador_actividades_economicas_entidades_2010_2017(database, actividades_economicas_entidades_2010_2017)
     #controlador.controlador_promedio_actividad_trimestral_2010_2017(database, promedio_actividad_trimestral_2010_2017)
     #controlador.controlador_exportaciones_entidades_2010_2018(database, exportaciones_entidades_2010_2018)
-
+    controlador.controlador_consumo_electrico_municipios_2010_2017(database, consumo_electrico_2010_2017)
     '''
     NOTA:
         Insertar unidades economicas de todo mexico 2010 - 2018 

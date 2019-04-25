@@ -30,10 +30,13 @@ class ConexionDB:
         print("[✔] Tablas de la bse de datos creadas")
 
     def limpiar_tablas_postgres(self):
-        drop_table_command = "DROP TABLE entidad_federativa"
-        self.cursor.execute(drop_table_command)
         drop_table_command = "DROP TABLE mexico"
         self.cursor.execute(drop_table_command)
+        drop_table_command = "DROP TABLE entidad_federativa"
+        self.cursor.execute(drop_table_command)
+        drop_table_command = "DROP TABLE municipios"
+        self.cursor.execute(drop_table_command)
+        
         print("[✔] Limpieza en las tablas en la base de datos")
 
     def insertar_entidades_poblacion_2010(self, entidades, poblacion):
